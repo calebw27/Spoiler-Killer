@@ -14,6 +14,29 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
+    arel (6.0.2)
+    backports (3.6.4)
+    bond (0.5.1)
+    buftok (0.2.0)
+    builder (3.2.2)
+    coderay (1.1.0)
+    equalizer (0.0.11)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
+    hashie (3.4.2)
+    http (0.6.4)
+      http_parser.rb (~> 0.6.0)
+    http_parser.rb (0.6.0)
+    i18n (0.7.0)
+    json (1.8.3)
+    memoizable (0.4.2)
+      thread_safe (~> 0.3, >= 0.3.1)
+    method_source (0.8.2)
+    minitest (5.7.0)
+    multi_json (1.11.2)
+    multipart-post (2.0.0)
+    naught (1.0.0)
     arel (6.0.2)
     backports (3.6.5)
     bond (0.5.1)
@@ -41,6 +64,8 @@ GEM
       slop (~> 3.4)
     pry-nav (0.2.4)
       pry (>= 0.9.10, < 0.11.0)
+    puma (2.11.3)
+      rack (>= 1.1, < 2.0)
     puma (2.12.1)
     rack (1.6.4)
     rack-protection (1.5.3)
@@ -56,6 +81,9 @@ GEM
       rack (>= 1.0)
       rack-test (~> 0.6.2)
       ripl (>= 0.7.0)
+    shotgun (0.9.1)
+      rack (>= 1.0)
+    simple_oauth (0.3.1)
     sass (3.4.16)
     shotgun (0.9.1)
       rack (>= 1.0)
@@ -82,7 +110,18 @@ GEM
       ripl-multi_line (>= 0.2.4)
       ripl-rack (>= 0.2.0)
       sinatra (>= 1.2.1)
-    tzinfo (1.2.2)
+    twitter (5.14.0)
+      addressable (~> 2.3)
+      buftok (~> 0.2.0)
+      equalizer (~> 0.0.9)
+      faraday (~> 0.9.0)
+      http (~> 0.6.0)
+      http_parser.rb (~> 0.6.0)
+      json (~> 1.8)
+      memoizable (~> 0.4.0)
+      naught (~> 1.0)
+      simple_oauth (~> 0.3.0)
+      tzinfo (1.2.2)
       thread_safe (~> 0.1)
 
 PLATFORMS
@@ -90,6 +129,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  json
   omniauth
   omniauth-twitter
   pry
@@ -103,6 +143,7 @@ DEPENDENCIES
   sinatra-contrib
   sqlite3
   tux
+  twitter
 
 BUNDLED WITH
    1.10.5

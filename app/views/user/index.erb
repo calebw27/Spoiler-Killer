@@ -1,0 +1,12 @@
+User page
+
+<p><%= session[:user] %></p>
+
+
+<% @tweet_text = "" %>
+<% @twitter_timeline.each { |tweet| %>
+  <% @tweet_text = @tweet_text + "<p>" + tweet["text"] + "</p>" } %>
+
+<%= @tweet_text %>
+
+<a href="/logout">Log out</a>

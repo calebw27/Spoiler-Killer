@@ -7,8 +7,8 @@ require 'active_support/all'
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/contrib/all' # Requires cookies, among other things
+require 'omniauth'
 require 'omniauth-twitter'
-
 require 'pry'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
@@ -30,3 +30,8 @@ require APP_ROOT.join('config', 'database')
 
 # Load the routes / actions
 require APP_ROOT.join('app', 'actions')
+
+# OmniAuth configuration
+use OmniAuth::Builder do
+  provider :twitter, 'jBlLVqrNSn7BY48FQFcVu9DjY', 'Y3hByR3vvFUSlXFouU5xC2eUeoGiqO2TTXJWeu1tUCODyFUK4f'
+end

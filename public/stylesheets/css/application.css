@@ -1,0 +1,64 @@
+#body {
+  font-family: gotham, arial;
+  font-size: 10pt;
+  font-color: #000000;
+  padding: 20px; }
+
+.menu-bar {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 15px;
+  white-space: nowrap;
+  max-height: 55px;
+  float: left;
+  display: inline; }
+
+.sign-in {
+  display: inline;
+  float: right;
+  margin-right: 20px; }
+
+.sign-in img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10pt; }
+
+#menu-button {
+  background-color: #bfffff;
+  width: 65px;
+  height: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  vertical-align: center;
+  text-align: center;
+  font-size: 8pt; }
+
+.title-bar {
+  background-color: #e9eef6;
+  width: 100%;
+  font-family: gotham, arial;
+  font-size: 10pt;
+  font-color: #000000;
+  padding: 20px; }
+
+.side-bar {
+  width: 200px;
+  height: 100%;
+  float: left;
+  display: block;
+  border-right: 2px dotted #000000;
+  font-family: gotham, arial;
+  font-size: 10pt;
+  font-color: #000000;
+  padding: 20px; }
+
+.content {
+  width: 75%;
+  float: right;
+  text-align: justify;
+  font-family: gotham, arial;
+  font-size: 10pt;
+  font-color: #000000;
+  padding: 20px; }
+
+/*# sourceMappingURL=application.css.map */

@@ -15,7 +15,6 @@ end
 
 get '/auth/twitter/callback' do
   if env['omniauth.auth']
-    binding.pry
     session[:user] = request.env['omniauth.auth']['info']['name']
     session[:token] = request.env['omniauth.auth']['credentials']['token']
     session[:secret] = request.env['omniauth.auth']['credentials']['secret']

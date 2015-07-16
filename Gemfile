@@ -11,8 +11,10 @@ gem 'sinatra-activerecord'
 gem 'puma'
 gem 'tux'
 
+gem 'json'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'twitter'
 
 group :development, :test do
   gem 'pry'

@@ -12,8 +12,10 @@ gem 'puma'
 gem 'tux'
 gem 'sass'
 
+gem 'json'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'twitter'
 
 group :development, :test do
   gem 'pry'

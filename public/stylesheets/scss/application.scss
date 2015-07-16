@@ -10,6 +10,7 @@
 
 #body {
   @include default-text-format;
+  position: relative;
 }
 
 .menu-bar {
@@ -29,6 +30,7 @@
 }
 
 .sign-in img{
+  display: inline;
   width: 40px;
   height: 40px;
   border-radius: 10pt;
@@ -52,17 +54,13 @@
 }
 
 .side-bar{
-  width: 200px;
   height: 100%;
   float: left;
-  display: block;
+  display: inline-block;
   border-right: 2px dotted #000000;
   @include default-text-format;
 }
 
 .content {
-  width: 75%;
-  float: right;
-  text-align: justify;
   @include default-text-format;
 }

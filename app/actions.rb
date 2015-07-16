@@ -29,7 +29,7 @@ end
 
 get '/user' do
   if session[:user]
-    erb :'user/index'
+    erb :'users/index'
   else
     redirect to ("/login")
   end

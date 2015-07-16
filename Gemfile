@@ -11,8 +11,10 @@ gem 'sinatra-activerecord'
 gem 'puma'
 gem 'tux'
 
-gem 'omniauth'
+# gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'twitter', '~> 5.14.0'
+gem 'rack'
 
 group :development, :test do
   gem 'pry'
@@ -20,3 +22,5 @@ group :development, :test do
   gem 'shotgun'
   gem 'sqlite3'
 end
+
+

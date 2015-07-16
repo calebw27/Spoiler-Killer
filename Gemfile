@@ -10,6 +10,7 @@ gem 'sinatra-activerecord'
 
 gem 'puma'
 gem 'tux'
+gem 'sass'
 
 gem 'json'
 gem 'omniauth'

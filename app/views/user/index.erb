@@ -1,59 +1,79 @@
-<nav class="navbar navbar-default navbar-static-top">
-<div class="menu">
-    <a href="http://www.twitter.com" class="btn btn-info">Home</a>
-    <a href="http://www.twitter.com" class="btn btn-info">Compose</a>
-    <a href="http://www.twitter.com" class="btn btn-info">Settings</a>
-      <table><tr colspan="2">
-        <td rowspan="2"><img src="/img/small_twitter_logo.png" /></td>
-        <td><span class="small"><a href="/logout">Logout</a></span><br />
-        <span class="small"><%= session[:user] %></span></td>
-      </tr></table>
-</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Spoilr</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Compose</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>
 
-
 <div class="title-bar">
-  <h1>SPOILR</h1>
+  <ul class="filter-list">
+    <li>#GameofThrones</li>
+    <li>#Survivor</li>
+    <li>#HungerGames</li>
+    <li>#AlbusDumbledoreDies</li>
+    <li>#HarryPotter</li>
+  </ul>
 </div>
 
-
 <div class="container-fluid">
-  <div class="col-xs-5">
-    <div class="side-bar">
-      <div class="filter-box">Tack lanyard bilge rat parrel ho belaying pin transom fluke gaff fire ship. Clipper yardarm hang the jib grog fore coffer tack dead men tell no tales port spanker. Poop deck pink carouser yo-ho-ho pirate mizzenmast gangplank wench maroon aft. Brethren of the Coast killick main sheet run a rig Corsair jury mast tackle ho barkadeer doubloon. Pink aft gabion strike colors six pounders hulk Spanish Main Sink me gun Sail ho.Tack lanyard bilge rat parrel ho belaying pin transom fluke gaff fire ship. Clipper yardarm hang the jib grog fore coffer tack dead men tell no tales port spanker. Poop deck pink carouser yo-ho-ho pirate mizzenmast</div>
-      <div class="filter-box">Tack lanyard bilge rat parrel ho belaying pin transom fluke gaff fire ship. Clipper yardarm hang the jib grog fore coffer tack dead men tell no tales port spanker. Poop deck pink carouser yo-ho-ho pirate mizzenmast gangplank wench maroon aft. Brethren of the Coast killick main sheet run a rig Corsair jury mast tackle ho barkadeer doubloon. Pink aft gabion strike colors six pounders hulk Spanish Main Sink me gun Sail ho. Tack lanyard bilge rat parrel ho belaying pin transom fluke gaff fire ship. Clipper yardarm hang the jib grog fore coffer tack dead men tell no tales port spanker. Poop deck pink carouser yo-ho-ho pirate mizzenmast</div>
-    </div>
-  </div>
+<div class="row">
+  <div class="col-sm-3 side-bar">
+      <div class="filter-box">
+        Active Filters
+      </div>
+      <div class="filter-box">
+        Recommended Filters
+      </div>
+  </div><!-- Close Side Bar -->
 
-<div class="col-xs-7">
+<div class="col-sm-9">
   <div class="content">
     <% @tweet_text = "" %>
     <% @twitter_timeline.each do |tweet| %>
-    <!--Begin Tweet -->
-      <div class="tweet row">
-      <!-- Twitter Photo -->
-        <div class="col-xs-2">
-          <img src="<%= tweet["user"]["profile_image_url"] %>" class="img-adjust"/>
-        </div> <!-- Close Twitter photo tag-->
-      <!-- Begin Tweet content -->        
-        <div class="col-xs-10">
-          <div class="row">
-            <div class="col-xs-3 tweet-border"><a href="http://www.twitter.com/<%= tweet["user"]["screen_name"] %>" target="_blank">@<%= tweet["user"]["screen_name"] %></a></div>
-            <div class="col-xs-3"></div>
-            <div class="col-xs-3 tweet-border">Date</div>
-            <div class="col-xs-3 tweet-border">Time</div>
+
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object" src="<%= tweet["user"]["profile_image_url"] %>">
+            </a>
           </div>
-          <div class="row">
-            <%= tweet["text"] %>
-          </div>
+          <div class="media-body">
 
-          <div class="row">
-            Sed pharetra aliquam ornare. Phasellus sit amet tortor sem.</div>
-        </div> <!-- Close Tweet content -->
+            <a class="media-heading" href="http://www.twitter.com/<%= tweet["user"]["screen_name"] %>" target="_blank">@<%= tweet["user"]["screen_name"] %></a>
+            
+            <div class="pull-right tweet-button-text">
+              Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time
+            </div>
 
-      </div>
-       <% end %>
+            <p><%= tweet["text"] %></p>
+            <a href="#" class="btn btn-default btn-xs">Reply</a>
+            <a href="#" class="btn btn-default btn-xs">Retweet</a>
+            <a href="#" class="btn btn-default btn-xs">Star</a>
+            <a href="#" class="btn btn-default btn-xs">Follow</a>
+          </div> 
+        </div>
 
-     
-  </div>
+    <hr class="">
+    <% end %>
+</div>
 </div>

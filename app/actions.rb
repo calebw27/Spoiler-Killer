@@ -18,6 +18,8 @@ get '/auth/twitter/callback' do
     session[:user] = request.env['omniauth.auth']['info']['name']
     session[:token] = request.env['omniauth.auth']['credentials']['token']
     session[:secret] = request.env['omniauth.auth']['credentials']['secret']
+    session[:img] = request.env['omniauth.auth']['info']['image']
+    # binding.pry
     redirect to ("/user")
   else
     halt(401,'Not Authorized')

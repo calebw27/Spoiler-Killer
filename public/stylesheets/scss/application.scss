@@ -6,23 +6,21 @@
   }
 }
 
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
   .side-bar {
     display: none;
   }
   .content {
     width: 100%;
   }
-}
+}*/
 
 #body {
   @include default-text-format;
 }
 
 .menu {
-  position: absolute;
-  top: 5px;
-  left: 5px;
+  padding: 5px;
   display: block; 
   width: 100%;
 }
@@ -37,56 +35,50 @@ table {
   display: inline;
 }
 
-.small {
+.menu-text {
   text-align: center;
   font-size: 8pt;
+  font-weight: bold;
 }
 
-.sign-in a, a:active {
-  font-size: 8pt;
+#menu-left{
+  float: left;
+  display: inline-block;
 }
 
-#menu-button {
-  background-color: rgb(191,255,255);
-  width: 65px;
-  height: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-  vertical-align: center;
-  text-align: center;
-  font-size: 8pt;
+.menu-img{
+  max-width: 60px;
+  display: block;
+}
+
+#menu-right{
+  float: right;
+  display: inline-block;
 }
 
 .title-bar{
   background-color: rgb(233,238,246);
   width: 100%;
-  padding: 10px 20px 10px 20px;
-  @include default-text-format;
+  padding: 5px 10px 5px 10px;
 }
 
 .side-bar{
   height: 100%;
-  padding: 10px;
-  border-right: 2px dotted #000000;
+  padding: 10px 0px 10px 0px;
   @include default-text-format;
-}
-
-.tweet-border{
-  border: 1px solid #000000;
 }
 
 .img-adjust {
   padding-top: 10px;
-  max-width: 73px;
+  max-width: 83px;
 }
-
 
 .filter-box{
   border-color: #000000;
-  border-width: 2px;
+  border-width: 1px;
   border-style: dotted;
-  padding: 5px;
-  margin: 5px;
+  padding: 5px; 
+  margin-bottom: 20px;
 }
 
 .content {
@@ -95,8 +87,16 @@ table {
 }
 
 .tweet {
-  border: 1px solid #000000;
+  border-bottom: 1px dotted #000000;
   padding: 5px;
   margin: 5px;
+}
+
+.tweet-button-text{
+  font-size: 8pt;
+}
+
+.tweet-spacing{
+  margin: 10px 0px 10px 0px;
 }
 

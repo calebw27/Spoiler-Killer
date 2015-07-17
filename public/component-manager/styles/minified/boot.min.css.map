@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AACQ,oCAA4B,CAE5B,mCAA2B,CAC3B,iDAAyC,CACzC,0CAAkC,CAClC,wCAAgC,CAEhC,8CAAsC",
-"sources": ["boot.min.scss"],
-"names": [],
-"file": "boot.min.css"
-}

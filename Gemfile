@@ -17,10 +17,6 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
 gem 'tzinfo'
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/tweets_integrated
 
 group :development, :test do
   gem 'pry'

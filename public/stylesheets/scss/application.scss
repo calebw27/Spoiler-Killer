@@ -64,7 +64,7 @@ table {
 
 .side-bar{
   height: 100%;
-  padding: 10px 0px 10px 0px;
+  padding: 10px;
   @include default-text-format;
 }
 
@@ -104,3 +104,6 @@ hr {
   border: 1px dashed #000000;
 }
 
+.filter-list{
+  list-style-type: none;
+}

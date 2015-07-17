@@ -36,20 +36,20 @@
 </div>
 
 <div class="container-fluid">
-<div class="row">
-  <div class="col-sm-3 side-bar">
+  <div class="row">
+    <div class="col-sm-3 side-bar">
       <div class="filter-box">
         Active Filters
       </div>
       <div class="filter-box">
         Recommended Filters
       </div>
-  </div><!-- Close Side Bar -->
+    </div><!-- Close Side Bar -->
 
-<div class="col-sm-9">
-  <div class="content">
-    <% @tweet_text = "" %>
-    <% @twitter_timeline.each do |tweet| %>
+    <div class="col-sm-9">
+      <div class="content">
+        <% @tweet_text = "" %>
+        <% @twitter_timeline.each do |tweet| %>
 
         <div class="media">
           <div class="media-left">
@@ -73,7 +73,7 @@
           </div> 
         </div>
 
-    <hr class="">
-    <% end %>
-</div>
-</div>
+        <hr class="">
+        <% end %>
+      </div>
+    </div>

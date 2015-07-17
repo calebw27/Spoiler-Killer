@@ -9,6 +9,7 @@ require 'sinatra/activerecord'
 require 'sinatra/contrib/all' # Requires cookies, among other things
 require 'omniauth'
 require 'omniauth-twitter'
+require 'twitter'
 require 'open-uri'
 require 'json'
 require 'pry'
@@ -37,12 +38,3 @@ require APP_ROOT.join('app', 'actions')
 use OmniAuth::Builder do
   provider :twitter, 'jBlLVqrNSn7BY48FQFcVu9DjY', 'Y3hByR3vvFUSlXFouU5xC2eUeoGiqO2TTXJWeu1tUCODyFUK4f'
 end
-
-CONSUMER_KEY = OAuth::Consumer.new(
-    "jBlLVqrNSn7BY48FQFcVu9DjY",
-    "Y3hByR3vvFUSlXFouU5xC2eUeoGiqO2TTXJWeu1tUCODyFUK4f")
-
-ACCESS_TOKEN = OAuth::Token.new(
-    "3281135749-UZlpAmLkQNWtPp54x2fKkY7pNpIon1BeToJuUlk",
-    "h7mrjRxByDo6SjHzBg2mPCw9paudWj7AUBdRRSkwm4FWK")
-

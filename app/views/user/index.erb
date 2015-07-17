@@ -25,6 +25,19 @@
     </div>
   </div>
 
+
+<% @hashtag_kvpairs = [] %>
+<% @twitter_timeline.each { |tweet| @hashtag_kvpairs.concat(tweet["entities"]["hashtags"]) } %>
+
+<% @hashtags = [] %>
+<% @hashtag_kvpairs.each { |kvpair| @hashtags.concat([kvpair["text"]]) } %>
+<% @hashtags_grouped = @hashtags.group_by { |word| word } %>
+<% @hashtag_histogram = {} %>
+<% @hashtags_grouped.each_pair { |key, value| @hashtag_histogram[key] = @hashtags_grouped[key].length } %>
+<% @hashtag_histogram.sort_by { |word, frequency| frequency }.reverse %>
+
+
+
 <div class="col-xs-7">
   <div class="content">
     <% @tweet_text = "" %>

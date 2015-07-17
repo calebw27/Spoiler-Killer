@@ -15,7 +15,7 @@ end
 
 get '/auth/twitter/callback' do
   if env['omniauth.auth']
-    session[:user] = request.env['omniauth.auth']['info']['name']
+    session[:user] = request.env['omniauth.auth']['info']['nickname']
     session[:token] = request.env['omniauth.auth']['credentials']['token']
     session[:secret] = request.env['omniauth.auth']['credentials']['secret']
     redirect to ("/user")
@@ -30,7 +30,7 @@ end
 
 get '/user' do
   if session[:user]
-    url = URI("https://api.twitter.com/1.1/statuses/home_timeline.json")
+    url = URI("https://api.twitter.com/1.1/statuses/home_timeline.json?count=200")
     twitter_request = Net::HTTP::Get.new url.request_uri
     http = Net::HTTP.new url.host, url.port
     http.use_ssl = true
@@ -40,6 +40,7 @@ get '/user' do
     http.start
     twitter_response = http.request twitter_request
     @twitter_timeline = JSON.parse(twitter_response.body)
+    binding.pry
     erb :'user/index'
   else
     redirect to ("/login")

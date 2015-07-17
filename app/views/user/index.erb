@@ -2,11 +2,23 @@ User page
 
 <p><%= session[:user] %></p>
 
+<% @hashtag_kvpairs = [] %>
+<% @twitter_timeline.each { |tweet| @hashtag_kvpairs.concat(tweet["entities"]["hashtags"]) } %>
 
-<% @tweet_text = "" %>
+<% @hashtags = [] %>
+<p>Hashtags in your feed:
+<% @hashtag_kvpairs.each { |kvpair| @hashtags.concat([kvpair["text"]]) } %>
+<% @hashtags_grouped = @hashtags.group_by { |word| word } %>
+<% @hashtag_histogram = {} %>
+<% @hashtags_grouped.each_pair { |key, value| @hashtag_histogram[key] = @hashtags_grouped[key].length } %>
+<%= @hashtag_histogram.sort_by { |word, frequency| frequency }.reverse %>
+
+
+
+<% @tweets_parsed = "" %>
 <% @twitter_timeline.each { |tweet| %>
-  <% @tweet_text = @tweet_text + "<p>" + tweet["text"] + "</p>" } %>
+  <% @tweets_parsed = @tweets_parsed + '<p><span class="username">' + tweet["user"]["name"] + '</span> - <span class="screenname">@' + tweet["user"]["screen_name"] + '</span></p><p><span class="tweet">' + tweet["text"] + "</span></p>" } %>
 
-<%= @tweet_text %>
+<%= @tweets_parsed %>
 
 <a href="/logout">Log out</a>

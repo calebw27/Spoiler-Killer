@@ -34,6 +34,15 @@ get '/user' do
       config.access_token = session[:access_token]
       config.access_token_secret = session[:access_token_secret]
     end
+    hashtag_list = []
+    @client.home_timeline(options = {count: 200}).each do |tweet|
+      tweet.hashtags.each do |tag|
+        hashtag_list.concat([tag.text])
+      end
+    end
+    @hashtag_frequency = Hash.new(0)
+    hashtag_list.each { |tag| @hashtag_frequency[tag] += 1 }
+    @hashtag_frequency = @hashtag_frequency.sort_by { |key, value| value }.reverse
     erb :'user/index'
   else
     redirect to ("/login")

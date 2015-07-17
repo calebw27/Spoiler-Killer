@@ -27,11 +27,9 @@
 
 <div class="title-bar">
   <ul class="filter-list">
-    <li>#GameofThrones</li>
-    <li>#Survivor</li>
-    <li>#HungerGames</li>
-    <li>#AlbusDumbledoreDies</li>
-    <li>#HarryPotter</li>
+  <% (0..4).each do |x| %>
+    <%= "<li>##{@hashtag_frequency[x][0]} - #{@hashtag_frequency[x][1]} </li>" %>
+    <% end %>
   </ul>
 </div>
 

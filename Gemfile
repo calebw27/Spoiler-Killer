@@ -16,6 +16,8 @@ gem 'json'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
+gem 'tzinfo'
+
 
 group :development, :test do
   gem 'pry'

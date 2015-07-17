@@ -3,5 +3,5 @@
   <table><tr colspan="2">
         <td rowspan="2"><img src="/img/small_twitter_logo.png" /></td>
         <td><span class="small"><a href="/login">Login</a></span><br />
-        <span class="small"><%= session[:client].user.name %></span></td>
+        <span class="small"><%= session[:client].user.name if session[:client] %></span></td>
       </tr></table>

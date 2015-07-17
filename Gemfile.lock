@@ -16,7 +16,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (6.0.2)
-    backports (3.6.4)
+    backports (3.6.5)
     bond (0.5.1)
     buftok (0.2.0)
     builder (3.2.2)
@@ -37,17 +37,6 @@ GEM
     multi_json (1.11.2)
     multipart-post (2.0.0)
     naught (1.0.0)
-    arel (6.0.2)
-    backports (3.6.5)
-    bond (0.5.1)
-    builder (3.2.2)
-    coderay (1.1.0)
-    hashie (3.4.2)
-    i18n (0.7.0)
-    json (1.8.3)
-    method_source (0.8.2)
-    minitest (5.7.0)
-    multi_json (1.11.2)
     oauth (0.4.7)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
@@ -66,7 +55,6 @@ GEM
       pry (>= 0.9.10, < 0.11.0)
     puma (2.11.3)
       rack (>= 1.1, < 2.0)
-    puma (2.12.1)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -81,12 +69,10 @@ GEM
       rack (>= 1.0)
       rack-test (~> 0.6.2)
       ripl (>= 0.7.0)
-    shotgun (0.9.1)
-      rack (>= 1.0)
-    simple_oauth (0.3.1)
     sass (3.4.16)
     shotgun (0.9.1)
       rack (>= 1.0)
+    simple_oauth (0.3.1)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -121,7 +107,9 @@ GEM
       memoizable (~> 0.4.0)
       naught (~> 1.0)
       simple_oauth (~> 0.3.0)
-      tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+      tzinfo (= 1.2.2)
+    tzinfo (1.2.2)
       thread_safe (~> 0.1)
 
 PLATFORMS
@@ -144,6 +132,7 @@ DEPENDENCIES
   sqlite3
   tux
   twitter
+  tzinfo
 
 BUNDLED WITH
    1.10.5

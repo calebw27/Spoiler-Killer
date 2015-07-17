@@ -1,6 +1,9 @@
 User page
 
 <p><%= session[:user] %></p>
+<% user_images = "<img src= #{session[:img]}>" %>
+<p><%= user_images %></p>
+
 
 
 <% @tweet_text = "" %>
@@ -10,3 +13,4 @@ User page
 <%= @tweet_text %>
 
 <a href="/logout">Log out</a>
+

@@ -49,23 +49,24 @@
 <div class="col-sm-9">
   <div class="content">
     <% @tweet_text = "" %>
-    <% @twitter_timeline.each do |tweet| %>
+    <% @client.home_timeline.each do |tweet| %>
 
         <div class="media">
           <div class="media-left">
             <a href="#">
-              <img class="media-object" src="<%= tweet["user"]["profile_image_url"] %>">
+              <img class="media-object" src="<%= tweet.user.profile_image_uri %>">
             </a>
+
           </div>
           <div class="media-body">
 
-            <a class="media-heading" href="http://www.twitter.com/<%= tweet["user"]["screen_name"] %>" target="_blank">@<%= tweet["user"]["screen_name"] %></a>
+            <a class="media-heading" href="http://www.twitter.com/<%= tweet.user.screen_name %>" target="_blank">@<%= tweet.user.screen_name %></a>
             
             <div class="pull-right tweet-button-text">
               Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time
             </div>
 
-            <p><%= tweet["text"] %></p>
+            <p><%= tweet.text %></p>
             <a href="#" class="btn btn-default btn-xs">Reply</a>
             <a href="#" class="btn btn-default btn-xs">Retweet</a>
             <a href="#" class="btn btn-default btn-xs">Star</a>
@@ -75,5 +76,4 @@
 
     <hr class="">
     <% end %>
-</div>
 </div>

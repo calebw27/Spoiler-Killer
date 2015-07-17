@@ -49,7 +49,7 @@
 <div class="col-sm-9">
   <div class="content">
     <% @tweet_text = "" %>
-    <% @client.home_timeline.each do |tweet| %>
+    <% @client.home_timeline(options = {count: 200}).each do |tweet| %>
 
         <div class="media">
           <div class="media-left">

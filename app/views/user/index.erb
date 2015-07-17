@@ -26,54 +26,48 @@
 </nav>
 
 <div class="title-bar">
-  <h1>SPOILR</h1>
+  <p>Filter 
 </div>
 
 <div class="container-fluid">
 <div class="row">
-  <div class="col-xs-3 side-bar">
-      <div class="filter-box">Tack lanyard bilge rat parrel ho belaying pin transom fluke gaff fire ship. Clipper yardarm hang the jib grog fore coffer tack dead men tell no tales port spanker. Poop deck pink carouser yo-ho-ho pirate mizzenmast gangplank wench maroon aft. Brethren of the Coast killick main sheet run a rig Corsair jury mast tackle ho barkadeer doubloon. Pink aft gabion strike colors six pounders hulk Spanish Main Sink me gun Sail ho.Tack lanyard bilge rat parrel ho belaying pin transom fluke gaff fire ship. Clipper yardarm hang the jib grog fore coffer tack dead men tell no tales port spanker. Poop deck pink carouser yo-ho-ho pirate mizzenmast</div>
-      <div class="filter-box">Tack lanyard bilge rat parrel ho belaying pin transom fluke gaff fire ship. Clipper yardarm hang the jib grog fore coffer tack dead men tell no tales port spanker. Poop deck pink carouser yo-ho-ho pirate mizzenmast gangplank wench maroon aft. Brethren of the Coast killick main sheet run a rig Corsair jury mast tackle ho barkadeer doubloon. Pink aft gabion strike colors six pounders hulk Spanish Main Sink me gun Sail ho. Tack lanyard bilge rat parrel ho belaying pin transom fluke gaff fire ship. Clipper yardarm hang the jib grog fore coffer tack dead men tell no tales port spanker. Poop deck pink carouser yo-ho-ho pirate mizzenmast</div>
+  <div class="col-sm-3 side-bar">
+      <div class="filter-box">
+        Active Filters
+      </div>
+      <div class="filter-box">
+        Recommended Filters
+      </div>
   </div><!-- Close Side Bar -->
 
-<div class="col-xs-9">
+<div class="col-sm-9">
   <div class="content">
     <% @tweet_text = "" %>
     <% @twitter_timeline.each do |tweet| %>
-    <!--Begin Tweet -->
-      <div class="tweet row">
-  
-        <div class="col-xs-2">
-          <img src="<%= tweet["user"]["profile_image_url"] %>" class="img-adjust"/>
-        </div> <!-- Close Twitter photo tag-->
 
-     
-        <div class="col-xs-10">
+        <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object" src="<%= tweet["user"]["profile_image_url"] %>">
+            </a>
+          </div>
+          <div class="media-body">
 
-            <div class="row">
-                <div class="col-xs-3 tweet-button-text"><a href="http://www.twitter.com/<%= tweet["user"]["screen_name"] %>" target="_blank">@<%= tweet["user"]["screen_name"] %></a></div>
-                <div class="col-xs-3"></div>
-                <div class="col-xs-3 tweet-button-text">Date</div>
-                <div class="col-xs-3 tweet-button-text">Time</div>
+            <a class="media-heading" href="http://www.twitter.com/<%= tweet["user"]["screen_name"] %>" target="_blank">@<%= tweet["user"]["screen_name"] %></a>
+            
+            <div class="pull-right tweet-button-text">
+              Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time
             </div>
 
-            <div class="row">
-              <%= tweet["text"] %>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-*">
-                  <a href="#" class="btn btn-default tweet-button-text">Reply</a>
-                  <a href="#" class="btn btn-default tweet-button-text">Retweet</a>
-                  <a href="#" class="btn btn-default tweet-button-text">Star</a>
-                  <a href="#" class="btn btn-default tweet-button-text">Follow</a>
-              </div>
-            </div>
-
-          </div> <!-- Close Tweet content -->
-
+            <p><%= tweet["text"] %></p>
+            <a href="#" class="btn btn-default btn-xs">Reply</a>
+            <a href="#" class="btn btn-default btn-xs">Retweet</a>
+            <a href="#" class="btn btn-default btn-xs">Star</a>
+            <a href="#" class="btn btn-default btn-xs">Follow</a>
+          </div> 
         </div>
-         <% end %>
-      </div>
+
+    <hr class="">
+    <% end %>
 </div>
 </div>

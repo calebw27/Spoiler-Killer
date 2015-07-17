@@ -62,7 +62,7 @@ table {
   border-color: #000000;
   border-width: 1px;
   border-style: dotted;
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 20px; }
 
 .content {
@@ -81,5 +81,8 @@ table {
 
 .tweet-spacing {
   margin: 10px 0px 10px 0px; }
+
+hr {
+  border: 1px dashed #000000; }
 
 /*# sourceMappingURL=application.css.map */

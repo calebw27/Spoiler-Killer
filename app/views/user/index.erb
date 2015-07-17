@@ -19,6 +19,7 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-text">Signed in as [INSERT NAME]</li> 
         <li><a href="/logout">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -26,13 +27,20 @@
 </nav>
 
 <div class="title-bar">
-  <ul class="filter-list">
-    <li>#GameofThrones</li>
-    <li>#Survivor</li>
-    <li>#HungerGames</li>
-    <li>#AlbusDumbledoreDies</li>
-    <li>#HarryPotter</li>
-  </ul>
+  <form method="post">
+    <ul class="filter-list">
+      <li><button type="submit" class="btn btn-xs active">#GameofThrones</button></li>
+      <li><button type="submit" class="btn btn-xs active">#Survivor</button></li>
+      <li><button type="submit" class="btn btn-xs active">#HarryPotter</button></li>
+      <li><button type="submit" class="btn btn-xs active">#DumbledoreDies</button></li>
+      <li><button type="submit" class="btn btn-xs active">#HungerGames</button></li>
+      <li><button type="submit" class="btn btn-xs active">#SidneyCrosby</button></li>
+      <li><button type="submit" class="btn btn-xs active">#Antman</button></li>
+      <li><button type="submit" class="btn btn-xs active">#LighthouseLabs</button></li>
+      <li><button type="submit" class="btn btn-xs active">#Hulk</button></li>
+      <li><button type="submit" class="btn btn-xs active">#NickiMinaj</button></li>
+    </ul>
+  </form>
 </div>
 
 <div class="container-fluid">
@@ -46,26 +54,28 @@
       </div>
     </div><!-- Close Side Bar -->
 
-    <div class="col-sm-9">
-      <div class="content">
-        <% @tweet_text = "" %>
-        <% @twitter_timeline.each do |tweet| %>
+
+<div class="col-sm-9">
+  <div class="content">
+    <% @tweet_text = "" %>
+    <% @client.home_timeline.each do |tweet| %>
 
         <div class="media">
           <div class="media-left">
             <a href="#">
-              <img class="media-object" src="<%= tweet["user"]["profile_image_url"] %>">
+              <img class="media-object" src="<%= tweet.user.profile_image_uri %>">
             </a>
+
           </div>
           <div class="media-body">
 
-            <a class="media-heading" href="http://www.twitter.com/<%= tweet["user"]["screen_name"] %>" target="_blank">@<%= tweet["user"]["screen_name"] %></a>
+            <a class="media-heading" href="http://www.twitter.com/<%= tweet.user.screen_name %>" target="_blank">@<%= tweet.user.screen_name %></a>
             
             <div class="pull-right tweet-button-text">
               Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time
             </div>
 
-            <p><%= tweet["text"] %></p>
+            <p><%= tweet.text %></p>
             <a href="#" class="btn btn-default btn-xs">Reply</a>
             <a href="#" class="btn btn-default btn-xs">Retweet</a>
             <a href="#" class="btn btn-default btn-xs">Star</a>
@@ -73,7 +83,6 @@
           </div> 
         </div>
 
-        <hr class="">
-        <% end %>
-      </div>
-    </div>
+    <hr>
+    <% end %>
+</div>

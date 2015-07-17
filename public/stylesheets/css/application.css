@@ -44,8 +44,9 @@ table {
 
 .title-bar {
   background-color: #e9eef6;
-  width: 100%;
-  padding: 5px 10px 5px 10px; }
+  width: 90%;
+  margin: auto;
+  padding: 10px; }
 
 .side-bar {
   height: 100%;
@@ -85,7 +86,9 @@ table {
 hr {
   border: 1px dashed #000000; }
 
-.filter-list {
-  list-style-type: none; }
+.filter-list li {
+  list-style-type: none;
+  display: inline;
+  padding: 5px; }
 
 /*# sourceMappingURL=application.css.map */

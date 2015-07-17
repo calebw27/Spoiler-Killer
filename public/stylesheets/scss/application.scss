@@ -58,8 +58,9 @@ table {
 
 .title-bar{
   background-color: rgb(233,238,246);
-  width: 100%;
-  padding: 5px 10px 5px 10px;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
 }
 
 .side-bar{
@@ -104,6 +105,8 @@ hr {
   border: 1px dashed #000000;
 }
 
-.filter-list{
+.filter-list li{
   list-style-type: none;
+  display: inline;
+  padding: 5px;
 }

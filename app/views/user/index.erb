@@ -29,16 +29,9 @@
 <div class="title-bar">
   <form method="post">
     <ul class="filter-list">
-      <li><button type="submit" class="btn btn-xs active">#GameofThrones</button></li>
-      <li><button type="submit" class="btn btn-xs active">#Survivor</button></li>
-      <li><button type="submit" class="btn btn-xs active">#HarryPotter</button></li>
-      <li><button type="submit" class="btn btn-xs active">#DumbledoreDies</button></li>
-      <li><button type="submit" class="btn btn-xs active">#HungerGames</button></li>
-      <li><button type="submit" class="btn btn-xs active">#SidneyCrosby</button></li>
-      <li><button type="submit" class="btn btn-xs active">#Antman</button></li>
-      <li><button type="submit" class="btn btn-xs active">#LighthouseLabs</button></li>
-      <li><button type="submit" class="btn btn-xs active">#Hulk</button></li>
-      <li><button type="submit" class="btn btn-xs active">#NickiMinaj</button></li>
+      <% (0..20).each do |x| %>
+        <%= "<li><button type=\"submit\" class=\"btn btn-xs active\">##{@hashtag_frequency[x][0]} - #{@hashtag_frequency[x][1]}</button></li>" %>
+      <% end %>
     </ul>
   </form>
 </div>
@@ -58,7 +51,7 @@
 <div class="col-sm-9">
   <div class="content">
     <% @tweet_text = "" %>
-    <% @client.home_timeline.each do |tweet| %>
+    <% @client.home_timeline(options = {count: 200}).each do |tweet| %>
 
         <div class="media">
           <div class="media-left">

@@ -1,27 +1,36 @@
+@media (max-width: 768px) {
+  .side-bar {
+    display: none; }
+
+  .content {
+    width: 100%; } }
 #body {
   font-family: gotham, arial;
   font-size: 10pt;
-  font-color: #000000;
-  padding: 20px; }
+  font-color: #000000; }
 
-.menu-bar {
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 15px;
-  white-space: nowrap;
-  max-height: 55px;
-  float: left;
+.menu {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  display: block;
+  width: 100%; }
+
+table {
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  top: -10px;
+  right: 50px;
+  float: right;
   display: inline; }
 
-.sign-in {
-  display: inline;
-  float: right;
-  margin-right: 20px; }
+.small {
+  text-align: center;
+  font-size: 8pt; }
 
-.sign-in img {
-  width: 40px;
-  height: 40px;
-  border-radius: 10pt; }
+.sign-in a, a:active {
+  font-size: 8pt; }
 
 #menu-button {
   background-color: #bfffff;
@@ -36,29 +45,42 @@
 .title-bar {
   background-color: #e9eef6;
   width: 100%;
+  padding: 10px 20px 10px 20px;
   font-family: gotham, arial;
   font-size: 10pt;
-  font-color: #000000;
-  padding: 20px; }
+  font-color: #000000; }
 
 .side-bar {
-  width: 200px;
   height: 100%;
-  float: left;
-  display: block;
+  padding: 10px;
   border-right: 2px dotted #000000;
   font-family: gotham, arial;
   font-size: 10pt;
-  font-color: #000000;
-  padding: 20px; }
+  font-color: #000000; }
+
+.tweet-border {
+  border: 1px solid #000000; }
+
+.img-adjust {
+  padding-top: 10px;
+  max-width: 73px; }
+
+.filter-box {
+  border-color: #000000;
+  border-width: 2px;
+  border-style: dotted;
+  padding: 5px;
+  margin: 5px; }
 
 .content {
-  width: 75%;
-  float: right;
-  text-align: justify;
   font-family: gotham, arial;
   font-size: 10pt;
   font-color: #000000;
-  padding: 20px; }
+  padding: 10px; }
+
+.tweet {
+  border: 1px solid #000000;
+  padding: 5px;
+  margin: 5px; }
 
 /*# sourceMappingURL=application.css.map */

@@ -1,16 +1,72 @@
-User page
+<nav class="navbar navbar-default navbar-static-top">
+<div class="menu">
+    <a href="http://www.twitter.com" class="btn btn-info">Home</a>
+    <a href="http://www.twitter.com" class="btn btn-info">Compose</a>
+    <a href="http://www.twitter.com" class="btn btn-info">Settings</a>
+      <table><tr colspan="2">
+        <td rowspan="2"><img src="/img/small_twitter_logo.png" /></td>
+        <td><span class="small"><a href="/logout">Logout</a></span><br />
+        <span class="small"><%= session[:user] %></span></td>
+      </tr></table>
+</div>
+</nav>
 
-<p><%= session[:user] %></p>
-<% user_images = "<img src= #{session[:img]}>" %>
-<p><%= user_images %></p>
+
+<div class="title-bar">
+  <h1>SPOILR</h1>
+</div>
+
+
+<div class="container-fluid">
+  <div class="col-xs-5">
+    <div class="side-bar">
+      <div class="filter-box">Tack lanyard bilge rat parrel ho belaying pin transom fluke gaff fire ship. Clipper yardarm hang the jib grog fore coffer tack dead men tell no tales port spanker. Poop deck pink carouser yo-ho-ho pirate mizzenmast gangplank wench maroon aft. Brethren of the Coast killick main sheet run a rig Corsair jury mast tackle ho barkadeer doubloon. Pink aft gabion strike colors six pounders hulk Spanish Main Sink me gun Sail ho.Tack lanyard bilge rat parrel ho belaying pin transom fluke gaff fire ship. Clipper yardarm hang the jib grog fore coffer tack dead men tell no tales port spanker. Poop deck pink carouser yo-ho-ho pirate mizzenmast</div>
+      <div class="filter-box">Tack lanyard bilge rat parrel ho belaying pin transom fluke gaff fire ship. Clipper yardarm hang the jib grog fore coffer tack dead men tell no tales port spanker. Poop deck pink carouser yo-ho-ho pirate mizzenmast gangplank wench maroon aft. Brethren of the Coast killick main sheet run a rig Corsair jury mast tackle ho barkadeer doubloon. Pink aft gabion strike colors six pounders hulk Spanish Main Sink me gun Sail ho. Tack lanyard bilge rat parrel ho belaying pin transom fluke gaff fire ship. Clipper yardarm hang the jib grog fore coffer tack dead men tell no tales port spanker. Poop deck pink carouser yo-ho-ho pirate mizzenmast</div>
+    </div>
+  </div>
+
+
+<% @hashtag_kvpairs = [] %>
+<% @twitter_timeline.each { |tweet| @hashtag_kvpairs.concat(tweet["entities"]["hashtags"]) } %>
+
+<% @hashtags = [] %>
+<% @hashtag_kvpairs.each { |kvpair| @hashtags.concat([kvpair["text"]]) } %>
+<% @hashtags_grouped = @hashtags.group_by { |word| word } %>
+<% @hashtag_histogram = {} %>
+<% @hashtags_grouped.each_pair { |key, value| @hashtag_histogram[key] = @hashtags_grouped[key].length } %>
+<% @hashtag_histogram.sort_by { |word, frequency| frequency }.reverse %>
 
 
 
-<% @tweet_text = "" %>
-<% @twitter_timeline.each { |tweet| %>
-  <% @tweet_text = @tweet_text + "<p>" + tweet["text"] + "</p>" } %>
+<div class="col-xs-7">
+  <div class="content">
+    <% @tweet_text = "" %>
+    <% @twitter_timeline.each do |tweet| %>
+    <!--Begin Tweet -->
+      <div class="tweet row">
+      <!-- Twitter Photo -->
+        <div class="col-xs-2">
+          <img src="<%= tweet["user"]["profile_image_url"] %>" class="img-adjust"/>
+        </div> <!-- Close Twitter photo tag-->
+      <!-- Begin Tweet content -->        
+        <div class="col-xs-10">
+          <div class="row">
+            <div class="col-xs-3 tweet-border"><a href="http://www.twitter.com/<%= tweet["user"]["screen_name"] %>" target="_blank">@<%= tweet["user"]["screen_name"] %></a></div>
+            <div class="col-xs-3"></div>
+            <div class="col-xs-3 tweet-border">Date</div>
+            <div class="col-xs-3 tweet-border">Time</div>
+          </div>
+          <div class="row">
+            <%= tweet["text"] %>
+          </div>
 
-<%= @tweet_text %>
+          <div class="row">
+            Sed pharetra aliquam ornare. Phasellus sit amet tortor sem.</div>
+        </div> <!-- Close Tweet content -->
 
-<a href="/logout">Log out</a>
+      </div>
+       <% end %>
 
+     
+  </div>
+</div>

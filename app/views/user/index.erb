@@ -8,13 +8,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Spoilr</a>
+      <a class="navbar-brand" href="#">Hash Redactr</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/user">Home</a></li>
-        <li><a href="/compose">Compose</a></li>
+        <li><a class="nav navbar-nav" data-toggle="modal" data-target=".bs-example-modal-sm">Compose</a></li>
         <li><a href="#">Settings</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -25,8 +25,20 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <form method="post" action="/newtweet">
+          Compose Tweet:</br>
+          <input type="text" name="compose_tweet" width="250px" height="75px"><br />
+          <input type="submit" value="Tweet">
+        </form>
+    </div>
+  </div>
+</div>
+
 <div class="title-bar">
-  <form method="post">
+   <form method="post">
     <ul class="filter-list">
       <% @hashtag_frequency.first(20).each do |freq| %>
         <li>
@@ -60,15 +72,14 @@
             </a>
           </div> <!-- ./media-left -->
 
-          <div class="media-body <%= "redacted" unless (tweet.hashtags.map { |hashtag| hashtag.text } & session[:filters]).empty? %>">
+          <div class="media-body">
             <a class="media-heading" href="http://www.twitter.com/<%= tweet.user.screen_name %>" target="_blank">@<%= tweet.user.screen_name %></a>
             <div class="pull-right tweet-button-text">
-              <span class="date-time">Date</span>
-              <span class="date-time">Time</span>
+              <span class="date-time"><%= tweet.created_at.strftime("%Y-%m-%d | %H:%M") %></span>
             </div> <!-- ./pull-right tweet-button-text" -->
 
             <div class="tweet-spacing">
-              <p><%= tweet.text %></p>
+              <p class="<%= "redacted" unless (tweet.hashtags.map { |hashtag| hashtag.text } & session[:filters]).empty? %>"><%= tweet.text %></p>
               <a href="#" class="btn btn-default btn-xs">Reply</a>
               <a href="#" class="btn btn-default btn-xs">Retweet</a>
               <a href="#" class="btn btn-default btn-xs">Star</a>

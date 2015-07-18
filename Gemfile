@@ -5,6 +5,7 @@ gem 'rake'
 gem 'activesupport'
 
 gem 'sinatra'
+gem 'activerecord'
 gem 'sinatra-contrib'
 gem 'sinatra-activerecord'
 

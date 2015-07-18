@@ -88,7 +88,12 @@ get '/user' do
 end
 
 post '/user' do
-  session[:filters].concat([params[:filter]])
+  binding.pry
+  if params[:reset_filters]
+    session[:filters] = []
+  else
+    session[:filters].concat([params[:filter]])
+  end
   redirect to ("/user")
 end
 

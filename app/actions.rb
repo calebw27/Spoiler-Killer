@@ -103,13 +103,14 @@ post '/user' do
   when params[:reset_filters]
     reset_filters
   when params[:hashtag] 
-    session[:filters][:hashtags].concat([params[:hashtag]])
+    session[:filters][:hashtags].concat([params[:hashtag]]) unless session[:filters][:hashtags].include?(params[:hashtag])
   when params[:mention] 
-    session[:filters][:mentions].concat([params[:mention]])
+    session[:filters][:mentions].concat([params[:mention]]) unless session[:filters][:mentions].include?(params[:mention])
   when params[:user] 
-    session[:filters][:users].concat([params[:user]])
+    session[:filters][:users].concat([params[:user]]) unless session[:filters][:users].include?(params[:user])
   when params[:content_filter]
     session[:filters][:content].concat(params[:content_filter].downcase.split)
+    session[:filters][:content] = session[:filters][:content].uniq
   end
   redirect to ("/user")
 end

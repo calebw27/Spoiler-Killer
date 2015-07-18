@@ -29,8 +29,12 @@
 <div class="title-bar">
   <form method="post">
     <ul class="filter-list">
-      <% (0..20).each do |x| %>
-        <%= "<li><button type=\"submit\" class=\"btn btn-xs active\">##{@hashtag_frequency[x][0]} - #{@hashtag_frequency[x][1]}</button></li>" %>
+      <% @hashtag_frequency.first(20).each do |freq| %>
+        <li>
+          <button type="submit" name="hashtag" class="btn btn-xs active" value="<%= freq[0] %>">
+            #<%= freq[0] %> - <%= freq[1] %>
+          </button>
+        </li>
       <% end %>
     </ul>
   </form>
@@ -50,8 +54,7 @@
 
 <div class="col-sm-9">
   <div class="content">
-    <% @tweet_text = "" %>
-    <% @client.home_timeline(options = {count: 200}).each do |tweet| %>
+    <% @home_timeline.each do |tweet| %>
 
         <div class="media">
           <div class="media-left">
@@ -60,7 +63,7 @@
             </a>
 
           </div>
-          <div class="media-body">
+          <div class="media-body <%= "redacted" unless (tweet.hashtags & session[:filters]).empty? %>">
 
             <a class="media-heading" href="http://www.twitter.com/<%= tweet.user.screen_name %>" target="_blank">@<%= tweet.user.screen_name %></a>
             

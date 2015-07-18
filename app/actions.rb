@@ -14,6 +14,7 @@ end
 get '/auth/twitter/callback' do
   if env['omniauth.auth']
     session[:logged_in] = true
+    session[:filters] = []
     session[:access_token] = request.env['omniauth.auth']['credentials']['token']
     session[:access_token_secret] = request.env['omniauth.auth']['credentials']['secret']
     redirect to ("/user")
@@ -35,11 +36,13 @@ get '/user' do
       config.access_token_secret = session[:access_token_secret]
     end
     hashtag_list = []
-    @client.home_timeline(options = {count: 200}).each do |tweet|
+    @home_timeline = @client.home_timeline({count: 200})
+    @home_timeline.each do |tweet|
       tweet.hashtags.each do |tag|
         hashtag_list.concat([tag.text])
       end
     end
+    binding.pry
     @hashtag_frequency = Hash.new(0)
     hashtag_list.each { |tag| @hashtag_frequency[tag] += 1 }
     @hashtag_frequency = @hashtag_frequency.sort_by { |key, value| value }.reverse
@@ -47,6 +50,11 @@ get '/user' do
   else
     redirect to ("/login")
   end
+end
+
+post '/user' do
+  session{:filters].concat(params[:hashtag])
+  redirect to ("/user")
 end
 
 get '/logout' do

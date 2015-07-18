@@ -41,4 +41,4 @@
   //     $('ol#instructions').toggleClass("strike");
   //   });
 
-});
+// });

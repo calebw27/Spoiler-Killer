@@ -25,9 +25,14 @@
   width: 100%;
 }
 
-.filter-bar {
-  width: 80%;
-  margin: auto;
+table {
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  top: -10px;
+  right: 50px;
+  float: right; 
+  display: inline;
 }
 
 .menu-text {
@@ -53,6 +58,9 @@
 
 .title-bar{
   background-color: rgb(233,238,246);
+  width: 90%;
+  margin: auto;
+  padding: 5px;
 }
 
 .side-bar{
@@ -152,10 +160,3 @@
   height: 100px;
 }
 
-/*#hashtag, #user {
-  background-color: rgb(233,238,246);
-}
-
-#mention {
-  background-color: #FFFFFF;
-}*/

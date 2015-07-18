@@ -120,6 +120,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord
   activesupport
   factory_girl (~> 4.0)
   faker

@@ -27,6 +27,7 @@ end
 get '/auth/twitter/callback' do
   if env['omniauth.auth']
     session[:logged_in] = true
+    session[:filters] = []
     session[:access_token] = request.env['omniauth.auth']['credentials']['token']
     session[:access_token_secret] = request.env['omniauth.auth']['credentials']['secret']
     redirect to ("/user")
@@ -41,12 +42,6 @@ end
 
 get '/user' do
   if session[:logged_in]
-    # @client = Twitter::REST::Client.new do |config|
-    #   config.consumer_key = "jBlLVqrNSn7BY48FQFcVu9DjY"
-    #   config.consumer_secret = "Y3hByR3vvFUSlXFouU5xC2eUeoGiqO2TTXJWeu1tUCODyFUK4f"
-    #   config.access_token = session[:access_token]
-    #   config.access_token_secret = session[:access_token_secret]
-    # end
     @client = get_client
     hashtag_list = []
     @home_timeline = @client.home_timeline({count: 200})
@@ -64,13 +59,15 @@ get '/user' do
   end
 end
 
+post '/user' do
+  session[:filters].concat([params[:hashtag]])
+  binding.pry
+  redirect to ("/user")
+end
+
 get '/logout' do
   session.clear
   redirect to ("/")
-end
-
-post '/user' do
-  puts params[:hashtag]
 end
 
 get '/compose' do

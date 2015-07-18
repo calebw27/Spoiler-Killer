@@ -47,6 +47,10 @@ helpers do
     @user_frequency = @user_frequency.sort_by { |key, value| value }.reverse
   end
 
+  def reset_filters
+    session[:filters] = {hashtags: [], mentions: [], users: [], content: []}
+  end
+
 end
 
 get '/' do
@@ -60,7 +64,7 @@ end
 get '/auth/twitter/callback' do
   if env['omniauth.auth']
     session[:logged_in] = true
-    session[:filters] = []
+    reset_filters
     session[:access_token] = request.env['omniauth.auth']['credentials']['token']
     session[:access_token_secret] = request.env['omniauth.auth']['credentials']['secret']
     redirect to ("/user")
@@ -89,11 +93,17 @@ end
 
 post '/user' do
   binding.pry
-  if params[:reset_filters]
-    session[:filters] = []
-  else
-    session[:filters].concat([params[:filter]])
+  case
+  when params[:reset_filters]
+    reset_filters
+  when params[:hashtag] 
+    session[:filters][:hashtags].concat([params[:hashtag]])
+  when params[:mention] 
+    session[:filters][:mentions].concat([params[:mention]])
+  when params[:user] 
+    session[:filters][:users].concat([params[:user]])
   end
+  binding.pry
   redirect to ("/user")
 end
 

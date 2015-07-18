@@ -92,7 +92,6 @@ get '/user' do
 end
 
 post '/user' do
-  binding.pry
   case
   when params[:reset_filters]
     reset_filters
@@ -102,8 +101,9 @@ post '/user' do
     session[:filters][:mentions].concat([params[:mention]])
   when params[:user] 
     session[:filters][:users].concat([params[:user]])
+  when params[:content_filter]
+    session[:filters][:content].concat(params[:content_filter].downcase.split)
   end
-  binding.pry
   redirect to ("/user")
 end
 

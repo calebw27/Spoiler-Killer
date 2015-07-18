@@ -1,7 +1,4 @@
 $(document).ready(function(){
-    $(".filter-list li").click(function(){
-        $(this).offset({top:5,left,5});
-    });
 
   //   $('li').hover(function(){
   //     $(this).toggleClass("hover");

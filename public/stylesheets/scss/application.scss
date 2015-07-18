@@ -56,11 +56,9 @@ table {
   display: inline-block;
 }
 
-.title-bar{
-  background-color: rgb(233,238,246);
-  width: 90%;
+.filter-bar{
+  width: 80%;
   margin: auto;
-  padding: 5px;
 }
 
 .side-bar{
@@ -95,6 +93,8 @@ table {
 .content {
   @include default-text-format;
   padding: 10px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
 }
 
 .tweet {

@@ -42,11 +42,9 @@ table {
   float: right;
   display: inline-block; }
 
-.title-bar {
-  background-color: #e9eef6;
-  width: 90%;
-  margin: auto;
-  padding: 5px; }
+.filter-bar {
+  width: 80%;
+  margin: auto; }
 
 .side-bar {
   height: 100%;
@@ -79,7 +77,9 @@ table {
   font-family: gotham, arial;
   font-size: 10pt;
   font-color: #000000;
-  padding: 10px; }
+  padding: 10px;
+  background-color: #FFFFFF;
+  border-radius: 10px; }
 
 .tweet {
   border-bottom: 1px dotted #000000;

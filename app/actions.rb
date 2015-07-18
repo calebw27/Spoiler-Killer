@@ -35,7 +35,8 @@ get '/user' do
       config.access_token_secret = session[:access_token_secret]
     end
     hashtag_list = []
-    @client.home_timeline(options = {count: 200}).each do |tweet|
+    @home_timeline = @client.home_timeline({count: 200})
+    @home_timeline.each do |tweet|
       tweet.hashtags.each do |tag|
         hashtag_list.concat([tag.text])
       end
@@ -52,4 +53,8 @@ end
 get '/logout' do
   session.clear
   redirect to ("/")
+end
+
+post '/user' do
+  puts params[:hashtag]
 end

@@ -17,6 +17,8 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
 gem 'tzinfo'
+gem "factory_girl", "~> 4.0"
+gem 'faker'
 
 group :development, :test do
   gem 'pry'

@@ -19,7 +19,7 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li class="navbar-text">Signed in as <strong><%= @client.user.screen_name %></strong></li> 
+        <li class="navbar-text">Signed in as <strong>INSERT NAME</strong></li> 
         <li><a href="/logout">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -29,8 +29,12 @@
 <div class="title-bar">
   <form method="post">
     <ul class="filter-list">
-      <% (0..20).each do |x| %>
-        <%= "<li><button type=\"submit\" class=\"btn btn-xs active\">##{@hashtag_frequency[x][0]} - #{@hashtag_frequency[x][1]}</button></li>" %>
+      <% @hashtag_frequency.first(20).each do |freq| %>
+      <li>
+        <button type="submit" name="hashtag" class="btn btn-xs active" value="<%= freq[0] %>">
+          #<%= freq[0] %> - <%= freq[1] %>
+        </button>
+      </li>
       <% end %>
     </ul>
   </form>
@@ -48,34 +52,32 @@
     </div><!-- Close Side Bar -->
 
 
-<div class="col-sm-9">
-  <div class="content">
-    <% @tweet_text = "" %>
-    <% @client.home_timeline(options = {count: 200}).each do |tweet| %>
+    <div class="col-sm-9">
+      <div class="content">
+        <% @tweet_text = "" %>
+        <% @home_timeline.each do |tweet| %>
 
         <div class="media">
           <div class="media-left">
             <a href="#">
               <img class="media-object" src="<%= tweet.user.profile_image_uri %>">
             </a>
-
-          </div>
+          </div> <!-- ./media-left -->
           <div class="media-body">
-
             <a class="media-heading" href="http://www.twitter.com/<%= tweet.user.screen_name %>" target="_blank">@<%= tweet.user.screen_name %></a>
-            
             <div class="pull-right tweet-button-text">
-              Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time
-            </div>
-
-            <p><%= tweet.text %></p>
-            <a href="#" class="btn btn-default btn-xs">Reply</a>
-            <a href="#" class="btn btn-default btn-xs">Retweet</a>
-            <a href="#" class="btn btn-default btn-xs">Star</a>
-            <a href="#" class="btn btn-default btn-xs">Follow</a>
-          </div> 
-        </div>
-
-    <hr>
-    <% end %>
-</div>
+              <span class="date-time">Date</span>
+              <span class="date-time">Time</span>
+            </div> <!-- ./pull-right tweet-button-text" -->
+            <div class="tweet-spacing">
+              <p><%= tweet.text %></p>
+              <a href="#" class="btn btn-default btn-xs">Reply</a>
+              <a href="#" class="btn btn-default btn-xs">Retweet</a>
+              <a href="#" class="btn btn-default btn-xs">Star</a>
+              <a href="#" class="btn btn-default btn-xs">Follow</a>
+            </div><!-- ./tweet-spacing -->
+          </div> <!-- ./media-body -->
+        </div> <!-- ./media -->
+        <hr>
+        <% end %>
+    </div>

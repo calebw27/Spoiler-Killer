@@ -98,6 +98,36 @@ table {
   margin: 5px; }
 
 .redacted {
-  background-color: yellow; }
+  -webkit-filter: blur(40px);
+  -moz-filter: blur(40px);
+  -o-filter: blur(40px);
+  -ms-filter: blur(40px);
+  filter: blur(40px); }
+
+.modal-content > form {
+  font-family: gotham, arial;
+  font-size: 10pt;
+  font-color: #000000;
+  background-color: #e9eef6;
+  width: 350px;
+  height: 200px;
+  margin: auto;
+  position: relative;
+  padding: 25px;
+  border: 1px solid #000000; }
+
+.modal-content > form input[type=text] {
+  margin: 10px 0px 10px 0px;
+  width: 250px;
+  height: 75px;
+  line-height: 75px;
+  padding: 0px;
+  maxlength: 140; }
+
+.modal-content > input {
+  display: block;
+  border: 1px solid #000000;
+  background-color: #e9eef6;
+  height: 100px; }
 
 /*# sourceMappingURL=application.css.map */

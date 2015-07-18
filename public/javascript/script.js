@@ -1,7 +1,22 @@
-$(document).ready(function(){
-    $(".filter-list li").click(function(){
-        $(this).offset({top:5,left,5});
-    });
+// $(document).ready(function(){
+//     $(".filter-list").click(function(){
+//         $(this).slideToggle(100);
+//     });
+
+//   $(function() {
+//     $( "#accordion" ).accordion({
+//       heightStyle: "fill"
+//     });
+//   });
+//   $(function() {
+//     $( "#accordion-resizer" ).resizable({
+//       minHeight: 140,
+//       minWidth: 200,
+//       resize: function() {
+//         $( "#accordion" ).accordion( "refresh" );
+//       }
+//     });
+//   });
 
   //   $('li').hover(function(){
   //     $(this).toggleClass("hover");

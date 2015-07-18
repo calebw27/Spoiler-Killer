@@ -16,14 +16,9 @@
   display: block;
   width: 100%; }
 
-table {
-  margin: 0px;
-  padding: 0px;
-  position: relative;
-  top: -10px;
-  right: 50px;
-  float: right;
-  display: inline; }
+.filter-bar {
+  width: 80%;
+  margin: auto; }
 
 .menu-text {
   text-align: center;
@@ -43,10 +38,7 @@ table {
   display: inline-block; }
 
 .title-bar {
-  background-color: #e9eef6;
-  width: 90%;
-  margin: auto;
-  padding: 5px; }
+  background-color: #e9eef6; }
 
 .side-bar {
   height: 100%;
@@ -135,5 +127,13 @@ table {
   border: 1px solid #000000;
   background-color: #e9eef6;
   height: 100px; }
+
+/*#hashtag, #user {
+  background-color: rgb(233,238,246);
+}
+
+#mention {
+  background-color: #FFFFFF;
+}*/
 
 /*# sourceMappingURL=application.css.map */

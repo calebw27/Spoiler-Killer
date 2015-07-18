@@ -60,7 +60,7 @@ table {
   background-color: rgb(233,238,246);
   width: 90%;
   margin: auto;
-  padding: 10px;
+  padding: 5px;
 }
 
 .side-bar{
@@ -77,11 +77,21 @@ table {
 .filter-box{
   border-color: #000000;
   border-width: 1px;
-  border-style: dotted;
+  border-style: dashed;
   padding: 10px;
   margin-bottom: 20px;
 }
 
+.filter-box-title {
+  border-bottom: 1px solid #000000;
+  text-align: center;
+  top: -10px;
+  position: relative;
+}
+
+.date-time {
+  margin: 0px 10px 0px 10px;
+}
 .content {
   @include default-text-format;
   padding: 10px;
@@ -109,10 +119,6 @@ table {
 
 .filter-list button {
   margin: 5px 0px 5px 0px;
-}
-
-.date-time {
-  margin: 0px 30px 0px 30px;
 }
 
 .tweet-spacing{

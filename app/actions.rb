@@ -14,6 +14,50 @@ helpers do
     @client
   end
 
+  def get_lists
+    @hashtag_list = []
+    @mention_list = []
+    @user_list = []
+    @home_timeline.each do |tweet|
+      @user_list.concat([tweet.user.screen_name])
+      tweet.hashtags.each do |tag|
+        @hashtag_list.concat(["#".concat(tag.text)])
+      end
+      tweet.user_mentions.each do |mention|
+        @mention_list.concat(["@".concat(mention.screen_name)])
+      end
+    end
+  end
+
+  def get_hashtag_frequency
+    @hashtag_frequency = Hash.new(0)
+    @hashtag_list.each { |tag| @hashtag_frequency[tag] += 1 }
+    @hashtag_frequency = @hashtag_frequency.sort_by { |key, value| value }.reverse
+  end
+
+  def get_mention_frequency
+    @mention_frequency = Hash.new(0)
+    @mention_list.each { |mention| @mention_frequency[mention] += 1 }
+    @mention_frequency = @mention_frequency.sort_by { |key, value| value }.reverse
+  end
+
+  def get_user_frequency
+    @user_frequency = Hash.new(0)
+    @user_list.each { |user| @user_frequency[user] += 1 }
+    @user_frequency = @user_frequency.sort_by { |key, value| value }.reverse
+  end
+
+  def reset_filters
+    session[:filters] = {hashtags: [], mentions: [], users: [], content: []}
+  end
+
+  def redacted?(tweet)
+    !((tweet.hashtags.map { |hashtag| "#".concat(hashtag.text) } & session[:filters][:hashtags]).empty? &&
+    (tweet.user_mentions.map { |mention| "@".concat(mention.screen_name) } & session[:filters][:mentions]).empty? && 
+    ([tweet.user.screen_name] & session[:filters][:users]).empty? &&
+    (tweet.text.downcase.split & session[:filters][:content]).empty?)
+  end
+
 end
 
 get '/' do
@@ -27,7 +71,7 @@ end
 get '/auth/twitter/callback' do
   if env['omniauth.auth']
     session[:logged_in] = true
-    session[:filters] = []
+    reset_filters
     session[:access_token] = request.env['omniauth.auth']['credentials']['token']
     session[:access_token_secret] = request.env['omniauth.auth']['credentials']['secret']
     redirect to ("/user")
@@ -43,16 +87,11 @@ end
 get '/user' do
   if session[:logged_in]
     @client = get_client
-    hashtag_list = []
     @home_timeline = @client.home_timeline({count: 200})
-    @home_timeline.each do |tweet|
-      tweet.hashtags.each do |tag|
-        hashtag_list.concat([tag.text])
-      end
-    end
-    @hashtag_frequency = Hash.new(0)
-    hashtag_list.each { |tag| @hashtag_frequency[tag] += 1 }
-    @hashtag_frequency = @hashtag_frequency.sort_by { |key, value| value }.reverse
+    get_lists
+    get_hashtag_frequency
+    get_mention_frequency
+    get_user_frequency
     erb :'user/index'
   else
     redirect to ("/login")
@@ -60,7 +99,18 @@ get '/user' do
 end
 
 post '/user' do
-  session[:filters].concat([params[:hashtag]])
+  case
+  when params[:reset_filters]
+    reset_filters
+  when params[:hashtag] 
+    session[:filters][:hashtags].concat([params[:hashtag]])
+  when params[:mention] 
+    session[:filters][:mentions].concat([params[:mention]])
+  when params[:user] 
+    session[:filters][:users].concat([params[:user]])
+  when params[:content_filter]
+    session[:filters][:content].concat(params[:content_filter].downcase.split)
+  end
   redirect to ("/user")
 end
 

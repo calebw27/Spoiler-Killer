@@ -8,13 +8,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Spoilr</a>
+      <a class="navbar-brand" href="/user">Hash Redactr</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/user">Home</a></li>
-        <li><a href="/compose">Compose</a></li>
+        <li><a href="#" class="nav navbar-nav" data-toggle="modal" data-target=".bs-example-modal-sm">Compose</a></li>
         <li><a href="#">Settings</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -25,13 +25,43 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <form method="post" action="/newtweet">
+          Compose Tweet:</br>
+          <input type="text" name="compose_tweet" width="250px" height="75px"><br />
+          <input type="submit" value="Tweet">
+        </form>
+    </div>
+  </div>
+</div>
+
 <div class="title-bar">
-  <form method="post">
+   <form method="post">
     <ul class="filter-list">
-      <% @hashtag_frequency.first(20).each do |freq| %>
+      <% @hashtag_frequency.first(20).each do |hashtag| %>
         <li>
-          <button type="submit" name="hashtag" class="btn btn-xs active" value="<%= freq[0] %>">
-            #<%= freq[0] %> - <%= freq[1] %>
+          <button type="submit" name="hashtag" class="btn btn-xs btn-<%= session[:filters][:hashtags].include?(hashtag[0]) ? "success" : "default" %>" value="<%= hashtag[0] %>">
+            <%= hashtag[0] %> - <%= hashtag[1] %>
+          </button>
+        </li>
+      <% end %>
+    </ul>
+    <ul class="filter-list">
+      <% @mention_frequency.first(20).each do |mention| %>
+        <li>
+          <button type="submit" name="mention" class="btn btn-xs btn-<%= session[:filters][:mentions].include?(mention[0]) ? "success" : "default" %>" value="<%= mention[0] %>">
+            <%= mention[0] %> - <%= mention[1] %>
+          </button>
+        </li>
+      <% end %>
+    </ul>
+    <ul class="filter-list">
+      <% @user_frequency.first(20).each do |user| %>
+        <li>
+          <button type="submit" name="user" class="btn btn-xs btn-<%= session[:filters][:users].include?(user[0]) ? "success" : "default" %>" value="<%= user[0] %>">
+            <%= user[0] %> - <%= user[1] %>
           </button>
         </li>
       <% end %>
@@ -43,10 +73,33 @@
   <div class="row">
     <div class="col-sm-3 side-bar">
       <div class="filter-box">
-        Active Filters
+        <h5 class="filter-box-title">Active Filters</h5>
+        Hashtags:
+        <% session[:filters][:hashtags].each do |hashtag| %>
+          <div class="btn btn-xs btn-success"><%= hashtag %></div>
+        <% end %>
+        Mentions:
+        <% session[:filters][:mentions].each do |mention| %>
+          <div class="btn btn-xs btn-success"><%= mention %></div>
+        <% end %>
+        Users:
+        <% session[:filters][:users].each do |user| %>
+          <div class="btn btn-xs btn-success"><%= user %></div>
+        <% end %>
+        Content:
+        <% session[:filters][:content].each do |content| %>
+          <div class="btn btn-xs btn-success"><%= content %></div>
+        <% end %>
+        <form method="post">
+          <button type="submit" name="reset_filters" class="btn btn-danger btn-xs" value="reset_filters">Reset Filters</button>
+        </form>
       </div>
       <div class="filter-box">
-        Recommended Filters
+        <form method="post">
+          Content filter:</br>
+          <input type="text" name="content_filter" width="250px" height="75px"><br />
+          <input type="submit" value="Submit">
+        </form>
       </div>
     </div><!-- ./col-sm-3 side-bar -->
 
@@ -60,14 +113,14 @@
             </a>
           </div> <!-- ./media-left -->
 
-          <div class="media-body <%= "redacted" unless (tweet.hashtags.map { |hashtag| hashtag.text } & session[:filters]).empty? %>">
+          <div class="media-body">
             <a class="media-heading" href="http://www.twitter.com/<%= tweet.user.screen_name %>" target="_blank">@<%= tweet.user.screen_name %></a>
             <div class="pull-right tweet-button-text">
-              <span class="date-time">Date</span>
-              <span class="date-time">Time</span>
+              <span class="date-time"><%= tweet.created_at.strftime("%Y-%m-%d") %></span>
+              <span class="date-time"><%= tweet.created_at.strftime("%H:%M") %></span>
             </div> <!-- ./pull-right tweet-button-text" -->
 
-            <div class="tweet-spacing">
+            <div class="tweet-spacing <%= "redacted" if redacted?(tweet) %>"> 
               <p><%= tweet.text %></p>
               <a href="#" class="btn btn-default btn-xs">Reply</a>
               <a href="#" class="btn btn-default btn-xs">Retweet</a>

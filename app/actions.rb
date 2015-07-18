@@ -1,11 +1,24 @@
-  configure do
+configure do
   enable :sessions
+end
+
+helpers do
+
+  def get_client
+    @client = Twitter::REST::Client.new do |config|
+      config.consumer_key = "jBlLVqrNSn7BY48FQFcVu9DjY"
+      config.consumer_secret = "Y3hByR3vvFUSlXFouU5xC2eUeoGiqO2TTXJWeu1tUCODyFUK4f"
+      config.access_token = session[:access_token]
+      config.access_token_secret = session[:access_token_secret]
+    end
+    @client
+  end
+
 end
 
 get '/' do
   erb :index
 end
-
 
 get '/login' do
   redirect to("/auth/twitter?force_login=true")
@@ -28,12 +41,13 @@ end
 
 get '/user' do
   if session[:logged_in]
-    @client = Twitter::REST::Client.new do |config|
-      config.consumer_key = "jBlLVqrNSn7BY48FQFcVu9DjY"
-      config.consumer_secret = "Y3hByR3vvFUSlXFouU5xC2eUeoGiqO2TTXJWeu1tUCODyFUK4f"
-      config.access_token = session[:access_token]
-      config.access_token_secret = session[:access_token_secret]
-    end
+    # @client = Twitter::REST::Client.new do |config|
+    #   config.consumer_key = "jBlLVqrNSn7BY48FQFcVu9DjY"
+    #   config.consumer_secret = "Y3hByR3vvFUSlXFouU5xC2eUeoGiqO2TTXJWeu1tUCODyFUK4f"
+    #   config.access_token = session[:access_token]
+    #   config.access_token_secret = session[:access_token_secret]
+    # end
+    @client = get_client
     hashtag_list = []
     @home_timeline = @client.home_timeline({count: 200})
     @home_timeline.each do |tweet|
@@ -57,4 +71,16 @@ end
 
 post '/user' do
   puts params[:hashtag]
+end
+
+get '/compose' do
+  erb :'compose'
+end
+
+post '/newtweet' do
+  if session[:logged_in]
+    @client = get_client
+    @client.update(params[:compose_tweet])
+    redirect to ('/user')
+  end
 end

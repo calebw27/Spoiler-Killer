@@ -13,11 +13,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Compose</a></li>
+        <li><a href="/user">Home</a></li>
+        <li><a href="/compose">Compose</a></li>
         <li><a href="#">Settings</a></li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li class="navbar-text">Signed in as <strong>INSERT NAME</strong></li> 
         <li><a href="/logout">Logout</a></li>
@@ -49,14 +48,11 @@
       <div class="filter-box">
         Recommended Filters
       </div>
-    </div><!-- Close Side Bar -->
-
+    </div><!-- ./col-sm-3 side-bar -->
 
     <div class="col-sm-9">
       <div class="content">
-        <% @tweet_text = "" %>
         <% @home_timeline.each do |tweet| %>
-
         <div class="media">
           <div class="media-left">
             <a href="#">
@@ -80,4 +76,4 @@
         </div> <!-- ./media -->
         <hr>
         <% end %>
-    </div>
+    </div><!-- ./col-sm-9 -->

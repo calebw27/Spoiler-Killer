@@ -21,10 +21,10 @@ helpers do
     @home_timeline.each do |tweet|
       @user_list.concat([tweet.user.screen_name])
       tweet.hashtags.each do |tag|
-        @hashtag_list.concat([tag.text])
+        @hashtag_list.concat(["#".concat(tag.text)])
       end
       tweet.user_mentions.each do |mention|
-        @mention_list.concat([mention.screen_name])
+        @mention_list.concat(["@".concat(mention.screen_name)])
       end
     end
   end

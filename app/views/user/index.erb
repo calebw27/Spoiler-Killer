@@ -28,28 +28,28 @@
 <div class="title-bar">
   <form method="post">
     <ul class="filter-list">
-      <% @hashtag_frequency.first(20).each do |freq| %>
+      <% @hashtag_frequency.first(20).each do |hashtag| %>
         <li>
-          <button type="submit" name="filter" class="btn btn-xs active" value="<%= freq[0] %>">
-            #<%= freq[0] %> - <%= freq[1] %>
+          <button type="submit" name="filter" class="btn btn-xs btn-<%= session[:filters].include?(hashtag[0]) ? "success" : "default" %>" value="<%= hashtag[0] %>">
+            <%= hashtag[0] %> - <%= hashtag[1] %>
           </button>
         </li>
       <% end %>
     </ul>
     <ul class="filter-list">
-      <% @mention_frequency.first(20).each do |freq| %>
+      <% @mention_frequency.first(20).each do |mention| %>
         <li>
-          <button type="submit" name="filter" class="btn btn-xs active" value="<%= freq[0] %>">
-            @<%= freq[0] %> - <%= freq[1] %>
+          <button type="submit" name="filter" class="btn btn-xs btn-<%= session[:filters].include?(mention[0]) ? "success" : "default" %>" value="<%= mention[0] %>">
+            <%= mention[0] %> - <%= mention[1] %>
           </button>
         </li>
       <% end %>
     </ul>
     <ul class="filter-list">
-      <% @user_frequency.first(20).each do |freq| %>
+      <% @user_frequency.first(20).each do |user| %>
         <li>
-          <button type="submit" name="filter" class="btn btn-xs active" value="<%= freq[0] %>">
-            @<%= freq[0] %> - <%= freq[1] %>
+          <button type="submit" name="filter" class="btn btn-xs btn-<%= session[:filters].include?(user[0]) ? "success" : "default" %>" value="<%= user[0] %>">
+            <%= user[0] %> - <%= user[1] %>
           </button>
         </li>
       <% end %>
@@ -78,7 +78,7 @@
             </a>
           </div> <!-- ./media-left -->
 
-          <div class="media-body <%= "redacted" unless ((tweet.hashtags.map { |hashtag| hashtag.text } & session[:filters]).empty? && (tweet.user_mentions.map { |mention| mention.screen_name } & session[:filters]).empty? && ([tweet.user.screen_name] & session[:filters]).empty?) %>">
+          <div class="media-body <%= "redacted" unless ((tweet.hashtags.map { |hashtag| "#".concat(hashtag.text) } & session[:filters]).empty? && (tweet.user_mentions.map { |mention| "@".concat(mention.screen_name) } & session[:filters]).empty? && ([tweet.user.screen_name] & session[:filters]).empty?) %>">
             <a class="media-heading" href="http://www.twitter.com/<%= tweet.user.screen_name %>" target="_blank">@<%= tweet.user.screen_name %></a>
             <div class="pull-right tweet-button-text">
               <span class="date-time">Date</span>

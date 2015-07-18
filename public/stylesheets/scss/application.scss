@@ -101,12 +101,24 @@ table {
   margin: 10px 0px 10px 0px;
 }
 
-hr {
-  border: 1px dashed #000000;
-}
-
 .filter-list li{
   list-style-type: none;
   display: inline;
   padding: 5px;
+}
+
+.filter-list button {
+  margin: 5px 0px 5px 0px;
+}
+
+.date-time {
+  margin: 0px 30px 0px 30px;
+}
+
+.tweet-spacing{
+  margin: 5px;
+}
+
+.redacted {
+  background-color: yellow;
 }

@@ -60,7 +60,7 @@
             </a>
           </div> <!-- ./media-left -->
 
-          <div class="media-body <%= "redacted" unless (tweet.hashtags & session[:filters]).empty? %>">
+          <div class="media-body <%= "redacted" unless (tweet.hashtags.map { |hashtag| hashtag.text } & session[:filters]).empty? %>">
             <a class="media-heading" href="http://www.twitter.com/<%= tweet.user.screen_name %>" target="_blank">@<%= tweet.user.screen_name %></a>
             <div class="pull-right tweet-button-text">
               <span class="date-time">Date</span>

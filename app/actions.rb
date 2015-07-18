@@ -61,7 +61,6 @@ end
 
 post '/user' do
   session[:filters].concat([params[:hashtag]])
-  binding.pry
   redirect to ("/user")
 end
 

@@ -83,11 +83,6 @@ table {
 .tweet-spacing {
   margin: 10px 0px 10px 0px; }
 
-hr {
-  border: 1px dashed #000000;
-  padding: 0px;
-  margin: 0px; }
-
 .filter-list li {
   list-style-type: none;
   display: inline;
@@ -98,5 +93,11 @@ hr {
 
 .date-time {
   margin: 0px 30px 0px 30px; }
+
+.tweet-spacing {
+  margin: 5px; }
+
+.redacted {
+  background-color: yellow; }
 
 /*# sourceMappingURL=application.css.map */

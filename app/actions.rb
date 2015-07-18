@@ -51,6 +51,13 @@ helpers do
     session[:filters] = {hashtags: [], mentions: [], users: [], content: []}
   end
 
+  def redacted?(tweet)
+    !((tweet.hashtags.map { |hashtag| "#".concat(hashtag.text) } & session[:filters][:hashtags]).empty? &&
+    (tweet.user_mentions.map { |mention| "@".concat(mention.screen_name) } & session[:filters][:mentions]).empty? && 
+    ([tweet.user.screen_name] & session[:filters][:users]).empty? &&
+    (tweet.text.downcase.split & session[:filters][:content]).empty?)
+  end
+
 end
 
 get '/' do

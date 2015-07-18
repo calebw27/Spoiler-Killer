@@ -1,22 +1,4 @@
-// $(document).ready(function(){
-//     $(".filter-list").click(function(){
-//         $(this).slideToggle(100);
-//     });
-
-//   $(function() {
-//     $( "#accordion" ).accordion({
-//       heightStyle: "fill"
-//     });
-//   });
-//   $(function() {
-//     $( "#accordion-resizer" ).resizable({
-//       minHeight: 140,
-//       minWidth: 200,
-//       resize: function() {
-//         $( "#accordion" ).accordion( "refresh" );
-//       }
-//     });
-//   });
+$(document).ready(function(){
 
   //   $('li').hover(function(){
   //     $(this).toggleClass("hover");
@@ -41,4 +23,4 @@
   //     $('ol#instructions').toggleClass("strike");
   //   });
 
-// });
+});

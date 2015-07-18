@@ -42,11 +42,9 @@ table {
   float: right;
   display: inline-block; }
 
-.title-bar {
-  background-color: #e9eef6;
-  width: 90%;
-  margin: auto;
-  padding: 5px; }
+.filter-bar {
+  width: 80%;
+  margin: auto; }
 
 .side-bar {
   height: 100%;

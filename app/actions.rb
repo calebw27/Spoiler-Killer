@@ -99,19 +99,21 @@ get '/user' do
 end
 
 post '/user' do
+  binding.pry
   case
   when params[:reset_filters]
     reset_filters
-  when params[:hashtag] 
-    session[:filters][:hashtags].concat([params[:hashtag]]) unless session[:filters][:hashtags].include?(params[:hashtag])
-  when params[:mention] 
-    session[:filters][:mentions].concat([params[:mention]]) unless session[:filters][:mentions].include?(params[:mention])
-  when params[:user] 
-    session[:filters][:users].concat([params[:user]]) unless session[:filters][:users].include?(params[:user])
+  when params[:hashtag_filter] 
+    session[:filters][:hashtags].concat([params[:hashtag_filter]]) unless session[:filters][:hashtags].include?(params[:hashtag_filter])
+  when params[:mention_filter] 
+    session[:filters][:mentions].concat([params[:mention_filter]]) unless session[:filters][:mentions].include?(params[:mention_filter])
+  when params[:user_filter] 
+    session[:filters][:users].concat([params[:user_filter]]) unless session[:filters][:users].include?(params[:user_filter])
   when params[:content_filter]
     session[:filters][:content].concat(params[:content_filter].downcase.split)
     session[:filters][:content] = session[:filters][:content].uniq
   end
+  binding.pry
   redirect to ("/user")
 end
 

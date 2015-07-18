@@ -42,7 +42,7 @@
     <ul class="filter-list">
       <% @hashtag_frequency.first(20).each do |hashtag| %>
         <li>
-          <button type="submit" name="hashtag" class="btn btn-xs btn-<%= session[:filters][:hashtags].include?(hashtag[0]) ? "success" : "default" %>" value="<%= hashtag[0] %>">
+          <button type="submit" name="hashtag_filter" class="btn btn-xs btn-<%= session[:filters][:hashtags].include?(hashtag[0]) ? "success" : "default" %>" value="<%= hashtag[0] %>">
             <%= hashtag[0] %> - <%= hashtag[1] %>
           </button>
         </li>
@@ -51,7 +51,7 @@
     <ul class="filter-list">
       <% @mention_frequency.first(20).each do |mention| %>
         <li>
-          <button type="submit" name="mention" class="btn btn-xs btn-<%= session[:filters][:mentions].include?(mention[0]) ? "success" : "default" %>" value="<%= mention[0] %>">
+          <button type="submit" name="mention_filter" class="btn btn-xs btn-<%= session[:filters][:mentions].include?(mention[0]) ? "success" : "default" %>" value="<%= mention[0] %>">
             <%= mention[0] %> - <%= mention[1] %>
           </button>
         </li>
@@ -60,7 +60,7 @@
     <ul class="filter-list">
       <% @user_frequency.first(20).each do |user| %>
         <li>
-          <button type="submit" name="user" class="btn btn-xs btn-<%= session[:filters][:users].include?(user[0]) ? "success" : "default" %>" value="<%= user[0] %>">
+          <button type="submit" name="user_filter" class="btn btn-xs btn-<%= session[:filters][:users].include?(user[0]) ? "success" : "default" %>" value="<%= user[0] %>">
             <%= user[0] %> - <%= user[1] %>
           </button>
         </li>

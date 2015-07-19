@@ -1,8 +1,8 @@
-$(document).ready(function(){
+// $(document).ready(function(){
 
-  //   $('li').hover(function(){
-  //     $(this).toggleClass("hover");
-  //   });
+    // $('li').hover(function(){
+    //   $(this).toggleClass("hover");
+    // });
 
   //    $('li').click(function(){
   //      $(this).toggleClass("strike");
@@ -23,4 +23,4 @@ $(document).ready(function(){
   //     $('ol#instructions').toggleClass("strike");
   //   });
 
-});
+// });

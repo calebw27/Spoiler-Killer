@@ -73,8 +73,9 @@ p {
   font-color: #000000; }
 
 .img-adjust {
-  padding-top: 10px;
-  max-width: 83px; }
+  max-width: 30px;
+  border-radius: 100px;
+  margin: 0px 10px; }
 
 .filter-box {
   background-color: white;
@@ -159,7 +160,7 @@ textarea {
   maxlength: 140; }
 
 .reset-filters button {
-  width: 200px; }
+  padding: 0px 50px; }
 
 .filter-box form input[type=submit] {
   margin: 10px; }

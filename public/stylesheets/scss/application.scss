@@ -22,6 +22,10 @@ body {
   background-attachment: fixed;
 }
 
+p{
+  @include default-text-format;
+}
+
 .menu {
   padding: 5px;
   display: block; 
@@ -66,15 +70,15 @@ body {
 }
 
 .filter-box{
-  border-color: #000000;
-  border-width: 1px;
-  border-style: dashed;
+  background-color: white;
   padding: 10px;
   margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 .filter-box-title {
   border-bottom: 1px solid #000000;
+  font-weight: bold;
   text-align: center;
   top: -10px;
   position: relative;
@@ -114,6 +118,14 @@ body {
   margin: 5px 0px 5px 0px;
 }
 
+.filter-group {
+  text-align: center;
+  margin-bottom: 5px;
+}
+.filter-group-spacing {
+  margin: 5px 0px 5px 0px;
+}
+
 .tweet-spacing{
   margin: 5px;
 }
@@ -139,19 +151,21 @@ body {
   padding: 25px;
 }
 
-.modal-content > form input[type=text] {
-  margin: 10px 0px 10px 0px;
+textarea {
+  display:block;
+  border: 1px solid #000000;
+  background-color: #FFFFFF;
+  height: 100px;
   width: 250px;
-  height: 75px;
-  line-height: 75px;
-  padding: 0px;
   maxlength: 140;
 }
 
-.modal-content > input {
-  display:block;
-  border: 1px solid #000000;
-  background-color: rgb(233,238,246);
-  height: 100px;
+.reset-filters button {
+  width: 200px;
 }
+
+.filter-box form input[type=submit] {
+  margin: 10px;
+}
+
 

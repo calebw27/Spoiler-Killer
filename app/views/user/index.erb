@@ -30,7 +30,7 @@
     <div class="modal-content">
         <form method="post" action="/newtweet">
           Compose Tweet:</br>
-          <input type="text" name="compose_tweet" width="250px" height="75px"><br />
+          <textarea type="text" name="compose_tweet"></textarea><br />
           <input type="submit" value="Tweet">
         </form>
     </div>
@@ -113,35 +113,53 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-3 side-bar">
-      <div class="filter-box">
-        <h5 class="filter-box-title">Active Filters</h5>
-        Hashtags:
-        <% session[:filters][:hashtags].each do |hashtag| %>
-          <div class="btn btn-xs btn-success"><%= hashtag %></div>
-        <% end %>
-        Mentions:
-        <% session[:filters][:mentions].each do |mention| %>
-          <div class="btn btn-xs btn-success"><%= mention %></div>
-        <% end %>
-        Users:
-        <% session[:filters][:users].each do |user| %>
-          <div class="btn btn-xs btn-success"><%= user %></div>
-        <% end %>
-        Content:
-        <% session[:filters][:content].each do |content| %>
-          <div class="btn btn-xs btn-success"><%= content %></div>
-        <% end %>
+
+       <div class="filter-box">
         <form method="post">
-          <button type="submit" name="reset_filters" class="btn btn-danger btn-xs" value="reset_filters">Reset Filters</button>
-        </form>
-      </div>
-      <div class="filter-box">
-        <form method="post">
-          Content filter:</br>
+          <h5 class="filter-box-title">Custom Filter</h5></br>
+            <div class="filter-group">
+            <% session[:filters][:content].each do |content| %>
+              <div class="btn btn-xs btn-success"><%= content %></div>
+            <% end %>
+            </div>
+          <p>Type in your own keyword to redact by:</p>
           <input type="text" name="content_filter" width="250px" height="75px"><br />
           <input type="submit" value="Submit">
         </form>
-      </div>
+      </div> <!--./filter-box -->
+
+
+      <div class="filter-box">
+        <h5 class="filter-box-title">Twitter Filters</h5>
+          
+          <h5>Hashtags:</h5>
+          <div class="filter-group">
+            <% session[:filters][:hashtags].each do |hashtag| %>
+            <div class="btn btn-xs btn-success filter-group-spacing"><%= hashtag %></div>
+            <% end %>
+          </div>
+        
+        <h5>Mentions:</h5>
+        <div class="filter-group">
+          <% session[:filters][:mentions].each do |mention| %>
+            <div class="btn btn-xs btn-success filter-group-spacing"><%= mention %></div>
+          <% end %>
+        </div>
+
+        <h5>Users:</h5>
+        <div class="filter-group">
+          <% session[:filters][:users].each do |user| %>
+            <div class="btn btn-xs btn-success"><%= user %></div>
+          <% end %>
+        </div>
+
+        <div class="filter-group">
+          <form method="post" class="reset-filters">
+            <button type="submit" name="reset_filters" class="btn btn-danger btn-xs" value="reset_filters">Reset Filters</button>
+          </form>
+        </div>
+      </div> <!--./filter-box -->
+
     </div><!-- ./col-sm-3 side-bar -->
 
     <div class="col-sm-9">
@@ -166,7 +184,6 @@
               <a href="#" class="btn btn-default btn-xs">Reply</a>
               <a href="#" class="btn btn-default btn-xs">Retweet</a>
               <a href="#" class="btn btn-default btn-xs">Star</a>
-              <a href="#" class="btn btn-default btn-xs">Follow</a>
             </div><!-- ./tweet-spacing -->
           </div> <!-- ./media-body -->
         </div> <!-- ./media -->

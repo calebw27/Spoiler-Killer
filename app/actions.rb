@@ -4,6 +4,16 @@ end
 
 helpers do
 
+  def store_user
+    if @client.any? 
+      User.new
+      save
+    else
+      redirect
+    end
+    
+  end
+
   def get_client
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key = "jBlLVqrNSn7BY48FQFcVu9DjY"
@@ -93,6 +103,7 @@ get '/user' do
     get_mention_frequency
     get_user_frequency
     erb :'user/index'
+    
   else
     redirect to ("/login")
   end
@@ -122,6 +133,8 @@ end
 get '/compose' do
   erb :'compose'
 end
+
+
 
 post '/newtweet' do
   if session[:logged_in]

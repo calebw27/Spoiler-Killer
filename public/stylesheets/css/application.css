@@ -1,11 +1,3 @@
-/*@media (max-width: 768px) {
-  .side-bar {
-    display: none;
-  }
-  .content {
-    width: 100%;
-  }
-}*/
 body {
   font-family: gotham, arial;
   font-size: 10pt;
@@ -30,36 +22,10 @@ body {
   border-color: inherit;
   border-radius: 100px; }
 
-.outline {
-  border: 5px solid;
-  border-color: inherit; }
-
 p {
   font-family: gotham, arial;
   font-size: 10pt;
   font-color: #000000; }
-
-.menu {
-  padding: 5px;
-  display: block;
-  width: 100%; }
-
-.menu-text {
-  text-align: center;
-  font-size: 8pt;
-  font-weight: bold; }
-
-#menu-left {
-  float: left;
-  display: inline-block; }
-
-.menu-img {
-  max-width: 60px;
-  display: block; }
-
-#menu-right {
-  float: right;
-  display: inline-block; }
 
 .filter-bar {
   width: 80%;

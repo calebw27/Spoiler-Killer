@@ -6,24 +6,18 @@
     width: 100%;
   }
 }*/
-#body {
+body {
   font-family: gotham, arial;
   font-size: 10pt;
-  font-color: #000000; }
+  font-color: #000000;
+  background-image: url("/img/bg-img.jpg");
+  background-size: cover;
+  background-attachment: fixed; }
 
 .menu {
   padding: 5px;
   display: block;
   width: 100%; }
-
-table {
-  margin: 0px;
-  padding: 0px;
-  position: relative;
-  top: -10px;
-  right: 50px;
-  float: right;
-  display: inline; }
 
 .menu-text {
   text-align: center;
@@ -110,6 +104,9 @@ table {
   -ms-filter: blur(40px);
   filter: blur(40px); }
 
+.modal-content {
+  background-color: #e9eef6; }
+
 .modal-content > form {
   font-family: gotham, arial;
   font-size: 10pt;
@@ -119,8 +116,7 @@ table {
   height: 200px;
   margin: auto;
   position: relative;
-  padding: 25px;
-  border: 1px solid #000000; }
+  padding: 25px; }
 
 .modal-content > form input[type=text] {
   margin: 10px 0px 10px 0px;

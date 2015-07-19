@@ -113,14 +113,15 @@ post '/user' do
   case
   when params[:reset_filters]
     reset_filters
-  when params[:hashtag] 
-    session[:filters][:hashtags].concat([params[:hashtag]])
-  when params[:mention] 
-    session[:filters][:mentions].concat([params[:mention]])
-  when params[:user] 
-    session[:filters][:users].concat([params[:user]])
+  when params[:hashtag_filter] 
+    session[:filters][:hashtags].concat([params[:hashtag_filter]]) unless session[:filters][:hashtags].include?(params[:hashtag_filter])
+  when params[:mention_filter] 
+    session[:filters][:mentions].concat([params[:mention_filter]]) unless session[:filters][:mentions].include?(params[:mention_filter])
+  when params[:user_filter] 
+    session[:filters][:users].concat([params[:user_filter]]) unless session[:filters][:users].include?(params[:user_filter])
   when params[:content_filter]
     session[:filters][:content].concat(params[:content_filter].downcase.split)
+    session[:filters][:content] = session[:filters][:content].uniq
   end
   redirect to ("/user")
 end

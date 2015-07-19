@@ -18,7 +18,7 @@
         <li><a href="#">Settings</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="navbar-text">Signed in as <strong>INSERT NAME</strong></li> 
+        <li class="navbar-text">Signed in as <strong><%= session[:username] %></strong><img src="<%= session[:profile_image] %> class="img-adjust"></li> 
         <li><a href="/logout">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -97,7 +97,7 @@
             <ul class="filter-list">
               <% @user_frequency.first(20).each do |user| %>
               <li>
-                <button type="submit" name="user_filter" class="btn btn-xs btn-<%= session[:filters][:users].include?(user[0]) ? "success" : "default" %>" value="<%= user[0] %>">
+                <button type="submit" name="user_filter" class="btn btn-xs btn-<%= session[:filters][:usernames].include?(user[0]) ? "success" : "default" %>" value="<%= user[0] %>">
                   <%= user[0] %> - <%= user[1] %>
                 </button>
               </li>
@@ -151,7 +151,7 @@
 
         <h5>Users:</h5>
         <div class="filter-group">
-          <% session[:filters][:users].each do |user| %>
+          <% session[:filters][:usernames].each do |user| %>
           <button type="submit" name="user_filter" class="btn btn-xs btn-success filter-group-spacing" value="<%= user %>"><%= user %></button>
           <% end %>
         </div>

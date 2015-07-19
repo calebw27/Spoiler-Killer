@@ -48,13 +48,13 @@ helpers do
   end
 
   def reset_filters
-    session[:filters] = {hashtags: [], mentions: [], users: [], content: []}
+    session[:filters] = {hashtags: [], mentions: [], usernames: [], content: []}
   end
 
   def redacted?(tweet)
     !((tweet.hashtags.map { |hashtag| "#".concat(hashtag.text) } & session[:filters][:hashtags]).empty? &&
     (tweet.user_mentions.map { |mention| "@".concat(mention.screen_name) } & session[:filters][:mentions]).empty? && 
-    ([tweet.user.screen_name] & session[:filters][:users]).empty? &&
+    ([tweet.user.screen_name] & session[:filters][:usernames]).empty? &&
     (tweet.text.downcase.split & session[:filters][:content]).empty?)
   end
 
@@ -73,12 +73,14 @@ get '/auth/twitter/callback' do
     session[:logged_in] = true
     session[:access_token] = request.env['omniauth.auth']['credentials']['token']
     session[:access_token_secret] = request.env['omniauth.auth']['credentials']['secret']
+    session[:username] = request.env['omniauth.auth']['info']['nickname']
+    session[:profile_image] = request.env['omniauth.auth']['info']['image']
     user = User.find_by(access_token: session[:access_token])
     reset_filters
     unless user.nil?
       session[:filters][:hashtags] = user[:hashtags].split
       session[:filters][:mentions] = user[:mentions].split
-      session[:filters][:users] = user[:usernames].split
+      session[:filters][:usernames] = user[:usernames].split
       session[:filters][:content] = user[:content].split
     end    
     redirect to ("/user")
@@ -114,7 +116,7 @@ post '/user' do
   when params[:mention_filter]
     session[:filters][:mentions].include?(params[:mention_filter]) ? session[:filters][:mentions].delete(params[:mention_filter]) : session[:filters][:mentions].concat([params[:mention_filter]])
   when params[:user_filter] 
-    session[:filters][:users].include?(params[:user_filter]) ? session[:filters][:users].delete(params[:user_filter]) : session[:filters][:users].concat([params[:user_filter]])
+    session[:filters][:usernames].include?(params[:user_filter]) ? session[:filters][:usernames].delete(params[:user_filter]) : session[:filters][:usernames].concat([params[:user_filter]])
   when params[:content_filter]
     session[:filters][:content].concat(params[:content_filter].downcase.split)
     session[:filters][:content] = session[:filters][:content].uniq
@@ -123,7 +125,7 @@ post '/user' do
   end
   user = User.find_by(access_token: session[:access_token])
   if user.nil?
-    user = User.create(access_token: session[:access_token], hashtags: session[:filters][:hashtags], mentions: session[:filters][:mentions], usernames: session[:filters][:users], content: session[:filters][:content])
+    user = User.create(access_token: session[:access_token], hashtags: session[:filters][:hashtags], mentions: session[:filters][:mentions], usernames: session[:filters][:usernames], content: session[:filters][:content])
   else
     hashtag_filters = ""
     mention_filters = ""
@@ -131,7 +133,7 @@ post '/user' do
     content_filters = ""
     session[:filters][:hashtags].each { |hashtag| hashtag_filters << "#{hashtag} "}
     session[:filters][:mentions].each { |mention| mention_filters << "#{mention} "}
-    session[:filters][:users].each { |user| user_filters << "#{user} "}
+    session[:filters][:usernames].each { |user| user_filters << "#{user} "}
     session[:filters][:content].each { |word| content_filters << "#{word} "}
     user.update(hashtags: hashtag_filters, mentions: mention_filters, usernames: user_filters, content: content_filters)
   end

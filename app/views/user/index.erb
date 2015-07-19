@@ -159,8 +159,19 @@
           <div class="media-body">
             <a class="media-heading" href="http://www.twitter.com/<%= tweet.user.screen_name %>" target="_blank">@<%= tweet.user.screen_name %></a>
             <div class="pull-right tweet-button-text">
-              <span class="date-time"><%= tweet.created_at.strftime("%Y-%m-%d") %></span>
-              <span class="date-time"><%= tweet.created_at.strftime("%H:%M") %></span>
+              <span class="date-time">
+                <% time_since_tweet = Time.now - tweet.created_at %>
+                <% case when time_since_tweet < 0 %>
+                  Updated just now</span>
+                <% when time_since_tweet < 60 %>
+                  <%= time_since_tweet.to_i %>s</span>
+                <% when time_since_tweet < 3600 %>
+                  <%= (time_since_tweet / 60).to_i %>m</span>
+                <% when time_since_tweet < 86400 %>
+                  <%= (time_since_tweet / 3600).to_i %>h</span>
+                <% else %>
+                  <%= (time_since_tweet / 86400).to_i %>d</span>
+                <% end %>
             </div> <!-- ./pull-right tweet-button-text" -->
 
             <div class="tweet-spacing <%= "redacted" if redacted?(tweet) %>"> 

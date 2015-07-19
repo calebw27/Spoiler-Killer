@@ -14,6 +14,11 @@ body {
   background-size: cover;
   background-attachment: fixed; }
 
+p {
+  font-family: gotham, arial;
+  font-size: 10pt;
+  font-color: #000000; }
+
 .menu {
   padding: 5px;
   display: block;
@@ -52,14 +57,14 @@ body {
   max-width: 83px; }
 
 .filter-box {
-  border-color: #000000;
-  border-width: 1px;
-  border-style: dashed;
+  background-color: white;
   padding: 10px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  border-radius: 10px; }
 
 .filter-box-title {
   border-bottom: 1px solid #000000;
+  font-weight: bold;
   text-align: center;
   top: -10px;
   position: relative; }
@@ -94,6 +99,13 @@ body {
 .filter-list button {
   margin: 5px 0px 5px 0px; }
 
+.filter-group {
+  text-align: center;
+  margin-bottom: 5px; }
+
+.filter-group-spacing {
+  margin: 5px 0px 5px 0px; }
+
 .tweet-spacing {
   margin: 5px; }
 
@@ -118,18 +130,18 @@ body {
   position: relative;
   padding: 25px; }
 
-.modal-content > form input[type=text] {
-  margin: 10px 0px 10px 0px;
-  width: 250px;
-  height: 75px;
-  line-height: 75px;
-  padding: 0px;
-  maxlength: 140; }
-
-.modal-content > input {
+textarea {
   display: block;
   border: 1px solid #000000;
-  background-color: #e9eef6;
-  height: 100px; }
+  background-color: #FFFFFF;
+  height: 100px;
+  width: 250px;
+  maxlength: 140; }
+
+.reset-filters button {
+  width: 200px; }
+
+.filter-box form input[type=submit] {
+  margin: 10px; }
 
 /*# sourceMappingURL=application.css.map */

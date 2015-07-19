@@ -55,7 +55,7 @@ helpers do
     !((tweet.hashtags.map { |hashtag| "#".concat(hashtag.text) } & session[:filters][:hashtags]).empty? &&
     (tweet.user_mentions.map { |mention| "@".concat(mention.screen_name) } & session[:filters][:mentions]).empty? && 
     ([tweet.user.screen_name] & session[:filters][:usernames]).empty? &&
-    (tweet.text.downcase.split & session[:filters][:content]).empty?)
+    (tweet.text.downcase.split.map { |word| word.gsub(/\W$/, "") } & session[:filters][:content].map { |word| word.downcase }).empty?)
   end
 
 end
@@ -120,7 +120,7 @@ post '/user' do
   when params[:user_filter] 
     session[:filters][:usernames].include?(params[:user_filter]) ? session[:filters][:usernames].delete(params[:user_filter]) : session[:filters][:usernames].concat([params[:user_filter]])
   when params[:content_filter]
-    session[:filters][:content].concat(params[:content_filter].downcase.split)
+    session[:filters][:content].concat(params[:content_filter].split)
     session[:filters][:content] = session[:filters][:content].uniq
   when params[:remove_content_filter]
     session[:filters][:content].delete(params[:remove_content_filter])

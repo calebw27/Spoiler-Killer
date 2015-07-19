@@ -6,15 +6,6 @@
   }
 }
 
-/*@media (max-width: 768px) {
-  .side-bar {
-    display: none;
-  }
-  .content {
-    width: 100%;
-  }
-}*/
-
 body {
   @include default-text-format;
   background-image: url('/img/bg-img.jpg');
@@ -41,40 +32,8 @@ body {
   border-radius: 100px;
 }
 
-.outline{
-  border: 5px solid;
-  border-color: inherit;
-}
-
 p{
   @include default-text-format;
-}
-
-.menu {
-  padding: 5px;
-  display: block; 
-  width: 100%;
-}
-
-.menu-text {
-  text-align: center;
-  font-size: 8pt;
-  font-weight: bold;
-}
-
-#menu-left{
-  float: left;
-  display: inline-block;
-}
-
-.menu-img{
-  max-width: 60px;
-  display: block;
-}
-
-#menu-right{
-  float: right;
-  display: inline-block;
 }
 
 .filter-bar{

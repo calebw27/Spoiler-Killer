@@ -14,6 +14,26 @@ body {
   background-size: cover;
   background-attachment: fixed; }
 
+.login {
+  margin-top: 50px;
+  background-color: #FFFFFF;
+  opacity: 0.6;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Audiowide', cursive; }
+
+.audiowide {
+  font-family: 'Audiowide', cursive; }
+
+.login img {
+  border: 5px solid;
+  border-color: inherit;
+  border-radius: 100px; }
+
+.outline {
+  border: 5px solid;
+  border-color: inherit; }
+
 p {
   font-family: gotham, arial;
   font-size: 10pt;
@@ -114,8 +134,7 @@ p {
   -moz-filter: blur(40px);
   -o-filter: blur(40px);
   -ms-filter: blur(40px);
-  filter: blur(40px);
-}
+  filter: blur(40px); }
 
 .modal-content {
   background-color: #e9eef6; }
@@ -137,8 +156,7 @@ textarea {
   background-color: #FFFFFF;
   height: 100px;
   width: 250px;
-  maxlength: 140;
-}
+  maxlength: 140; }
 
 .reset-filters button {
   width: 200px; }

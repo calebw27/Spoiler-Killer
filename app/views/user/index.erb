@@ -24,7 +24,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
+  
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -119,10 +119,10 @@
         <div class="filter-group">
         <form method="post">
           <% session[:filters][:content].each do |content| %>
-          <button type="submit" name="remove_content_filter" class="btn btn-xs btn-success" value="<%= content %>"><%= content %></button>
+          <button type="submit" name="remove_content_filter" class="btn btn-xs btn-success filter-group-spacing" value="<%= content %>"><%= content %></button>
           <% end %>
         </form>
-        </div>
+        </div> <!-- ./filter-group -->
         <p>Type in your own keyword to redact by:</p>
       <form method="post">
         <input type="text" name="content_filter" width="250px" height="75px"><br />
@@ -138,28 +138,28 @@
         <h5>Hashtags:</h5>
         <div class="filter-group">
           <% session[:filters][:hashtags].each do |hashtag| %>
-          <button type="submit" name="hashtag_filter" class="btn btn-xs btn-success" value="<%= hashtag %>"><%= hashtag %></button>
+          <button type="submit" name="hashtag_filter" class="btn btn-xs btn-success filter-group-spacing" value="<%= hashtag %>"><%= hashtag %></button>
           <% end %>
         </div>
 
         <h5>Mentions:</h5>
         <div class="filter-group">
           <% session[:filters][:mentions].each do |mention| %>
-          <button type="submit" name="mention_filter" class="btn btn-xs btn-success" value="<%= mention %>"><%= mention %></button>
+          <button type="submit" name="mention_filter" class="btn btn-xs btn-success filter-group-spacing" value="<%= mention %>"><%= mention %></button>
           <% end %>
         </div>
 
         <h5>Users:</h5>
         <div class="filter-group">
           <% session[:filters][:users].each do |user| %>
-          <button type="submit" name="user_filter" class="btn btn-xs btn-success" value="<%= user %>"><%= user %></button>
+          <button type="submit" name="user_filter" class="btn btn-xs btn-success filter-group-spacing" value="<%= user %>"><%= user %></button>
           <% end %>
         </div>
       </form>
 
       <div class="filter-group">
         <form method="post" class="reset-filters">
-          <button type="submit" name="reset_filters" class="btn btn-danger btn-xs" value="reset_filters">Reset Filters</button>
+          <button type="submit" name="reset_filters" class="btn btn-danger btn-xs filter-group-spacing" value="reset_filters">Reset Filters</button>
         </form>
       </div>
     </div> <!--./filter-box -->

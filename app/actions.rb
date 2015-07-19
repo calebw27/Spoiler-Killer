@@ -111,6 +111,8 @@ post '/user' do
   when params[:content_filter]
     session[:filters][:content].concat(params[:content_filter].downcase.split)
     session[:filters][:content] = session[:filters][:content].uniq
+  when params[:remove_content_filter]
+    session[:filters][:content].delete(params[:remove_content_filter])
   end
   redirect to ("/user")
 end

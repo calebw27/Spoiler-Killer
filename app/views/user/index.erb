@@ -115,22 +115,24 @@
     <div class="col-sm-3 side-bar">
       <div class="filter-box">
         <h5 class="filter-box-title">Active Filters</h5>
-        Hashtags:
-        <% session[:filters][:hashtags].each do |hashtag| %>
-          <div class="btn btn-xs btn-success"><%= hashtag %></div>
-        <% end %>
-        Mentions:
-        <% session[:filters][:mentions].each do |mention| %>
-          <div class="btn btn-xs btn-success"><%= mention %></div>
-        <% end %>
-        Users:
-        <% session[:filters][:users].each do |user| %>
-          <div class="btn btn-xs btn-success"><%= user %></div>
-        <% end %>
-        Content:
-        <% session[:filters][:content].each do |content| %>
-          <div class="btn btn-xs btn-success"><%= content %></div>
-        <% end %>
+        <form method="post">
+          Hashtags:
+          <% session[:filters][:hashtags].each do |hashtag| %>
+            <button type="submit" name="hashtag_filter"class="btn btn-xs btn-success" value="<%= hashtag %>"><%= hashtag %></button>
+          <% end %>
+          Mentions:
+          <% session[:filters][:mentions].each do |mention| %>
+            <button type="submit" name="mention_filter"class="btn btn-xs btn-success" value="<%= mention %>"><%= mention %></button>
+          <% end %>
+          Users:
+          <% session[:filters][:users].each do |user| %>
+            <button type="submit" name="user_filter"class="btn btn-xs btn-success" value="<%= user %>"><%= user %></button>
+          <% end %>
+          Content:
+          <% session[:filters][:content].each do |content| %>
+            <button type="submit" name="remove_content_filter" class="btn btn-xs btn-success" value="<%= content %>"><%= content %></button>
+          <% end %>
+        </form>
         <form method="post">
           <button type="submit" name="reset_filters" class="btn btn-danger btn-xs" value="reset_filters">Reset Filters</button>
         </form>

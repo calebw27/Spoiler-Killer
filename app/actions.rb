@@ -71,9 +71,16 @@ end
 get '/auth/twitter/callback' do
   if env['omniauth.auth']
     session[:logged_in] = true
-    reset_filters
     session[:access_token] = request.env['omniauth.auth']['credentials']['token']
     session[:access_token_secret] = request.env['omniauth.auth']['credentials']['secret']
+    user = User.find_by(access_token: session[:access_token])
+    reset_filters
+    unless user.nil?
+      session[:filters][:hashtags] = user[:hashtags].split
+      session[:filters][:mentions] = user[:mentions].split
+      session[:filters][:users] = user[:usernames].split
+      session[:filters][:content] = user[:content].split
+    end    
     redirect to ("/user")
   else
     halt(401,'Not Authorized')
@@ -113,6 +120,20 @@ post '/user' do
     session[:filters][:content] = session[:filters][:content].uniq
   when params[:remove_content_filter]
     session[:filters][:content].delete(params[:remove_content_filter])
+  end
+  user = User.find_by(access_token: session[:access_token])
+  if user.nil?
+    user = User.create(access_token: session[:access_token], hashtags: session[:filters][:hashtags], mentions: session[:filters][:mentions], usernames: session[:filters][:users], content: session[:filters][:content])
+  else
+    hashtag_filters = ""
+    mention_filters = ""
+    user_filters = ""
+    content_filters = ""
+    session[:filters][:hashtags].each { |hashtag| hashtag_filters << "#{hashtag} "}
+    session[:filters][:mentions].each { |mention| mention_filters << "#{mention} "}
+    session[:filters][:users].each { |user| user_filters << "#{user} "}
+    session[:filters][:content].each { |word| content_filters << "#{word} "}
+    user.update(hashtags: hashtag_filters, mentions: mention_filters, usernames: user_filters, content: content_filters)
   end
   redirect to ("/user")
 end

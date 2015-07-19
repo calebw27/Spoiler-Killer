@@ -114,7 +114,8 @@ p {
   -moz-filter: blur(40px);
   -o-filter: blur(40px);
   -ms-filter: blur(40px);
-  filter: blur(40px); }
+  filter: blur(40px);
+}
 
 .modal-content {
   background-color: #e9eef6; }
@@ -136,7 +137,8 @@ textarea {
   background-color: #FFFFFF;
   height: 100px;
   width: 250px;
-  maxlength: 140; }
+  maxlength: 140;
+}
 
 .reset-filters button {
   width: 200px; }

@@ -15,24 +15,17 @@
   }
 }*/
 
-#body {
+body {
   @include default-text-format;
+  background-image: url('/img/bg-img.jpg');
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .menu {
   padding: 5px;
   display: block; 
   width: 100%;
-}
-
-table {
-  margin: 0px;
-  padding: 0px;
-  position: relative;
-  top: -10px;
-  right: 50px;
-  float: right; 
-  display: inline;
 }
 
 .menu-text {
@@ -133,6 +126,9 @@ table {
   filter: blur(40px);
 }
 
+.modal-content{
+  background-color: rgb(233,238,246);
+}
 .modal-content > form {
   @include default-text-format;
   background-color: rgb(233,238,246);
@@ -141,7 +137,6 @@ table {
   margin: auto;
   position:relative;
   padding: 25px;
-  border: 1px solid #000000;
 }
 
 .modal-content > form input[type=text] {

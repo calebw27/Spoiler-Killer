@@ -102,15 +102,17 @@ post '/user' do
   case
   when params[:reset_filters]
     reset_filters
-  when params[:hashtag_filter] 
-    session[:filters][:hashtags].concat([params[:hashtag_filter]]) unless session[:filters][:hashtags].include?(params[:hashtag_filter])
-  when params[:mention_filter] 
-    session[:filters][:mentions].concat([params[:mention_filter]]) unless session[:filters][:mentions].include?(params[:mention_filter])
+  when params[:hashtag_filter]
+    session[:filters][:hashtags].include?(params[:hashtag_filter]) ? session[:filters][:hashtags].delete(params[:hashtag_filter]) : session[:filters][:hashtags].concat([params[:hashtag_filter]])
+  when params[:mention_filter]
+    session[:filters][:mentions].include?(params[:mention_filter]) ? session[:filters][:mentions].delete(params[:mention_filter]) : session[:filters][:mentions].concat([params[:mention_filter]])
   when params[:user_filter] 
-    session[:filters][:users].concat([params[:user_filter]]) unless session[:filters][:users].include?(params[:user_filter])
+    session[:filters][:users].include?(params[:user_filter]) ? session[:filters][:users].delete(params[:user_filter]) : session[:filters][:users].concat([params[:user_filter]])
   when params[:content_filter]
     session[:filters][:content].concat(params[:content_filter].downcase.split)
     session[:filters][:content] = session[:filters][:content].uniq
+  when params[:remove_content_filter]
+    session[:filters][:content].delete(params[:remove_content_filter])
   end
   redirect to ("/user")
 end

@@ -76,6 +76,8 @@ get '/auth/twitter/callback' do
     session[:username] = request.env['omniauth.auth']['info']['nickname']
     session[:profile_image] = request.env['omniauth.auth']['info']['image']
     user = User.find_by(access_token: session[:access_token])
+    session[:username] = request.env['omniauth.auth']['info']['nickname']
+    session[:profile_image] = request.env['omniauth.auth']['info']['image']
     reset_filters
     unless user.nil?
       session[:filters][:hashtags] = user[:hashtags].split

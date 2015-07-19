@@ -18,7 +18,7 @@
         <li><a href="#">Settings</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="navbar-text">Signed in as <strong><%= session[:username] %></strong><img src="<%= session[:profile_image] %> class="img-adjust"></li> 
+        <li class="navbar-text">Signed in as <strong><%= session[:username] %></strong><img src="<%= session[:profile_image] %>" class="img-adjust"></li> 
         <li><a href="/logout">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -195,7 +195,7 @@
             </div> <!-- ./pull-right tweet-button-text" -->
 
             <div class="tweet-spacing <%= "redacted" if redacted?(tweet) %>"> 
-              <p><%= tweet.text %></p>
+              <p><%= tweet.full_text %></p>
               <a href="#" class="btn btn-default btn-xs">Reply</a>
               <a href="#" class="btn btn-default btn-xs">Retweet</a>
               <a href="#" class="btn btn-default btn-xs">Star</a>

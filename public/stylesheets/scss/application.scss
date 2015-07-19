@@ -89,8 +89,9 @@ p{
 }
 
 .img-adjust {
-  padding-top: 10px;
-  max-width: 83px;
+  max-width: 30px;
+  border-radius: 100px;
+  margin: 0px 10px;
 }
 
 .filter-box{
@@ -185,7 +186,7 @@ textarea {
 }
 
 .reset-filters button {
-  width: 200px;
+  padding: 0px 50px;
 }
 
 .filter-box form input[type=submit] {

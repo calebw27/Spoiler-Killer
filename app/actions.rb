@@ -75,10 +75,10 @@ get '/auth/twitter/callback' do
     session[:access_token_secret] = request.env['omniauth.auth']['credentials']['secret']
     session[:username] = request.env['omniauth.auth']['info']['nickname']
     session[:profile_image] = request.env['omniauth.auth']['info']['image']
-    user = User.find_by(access_token: session[:access_token])
     session[:username] = request.env['omniauth.auth']['info']['nickname']
     session[:profile_image] = request.env['omniauth.auth']['info']['image']
     reset_filters
+    user = User.find_by(access_token: session[:access_token])
     unless user.nil?
       session[:filters][:hashtags] = user[:hashtags].split
       session[:filters][:mentions] = user[:mentions].split
@@ -142,19 +142,15 @@ post '/user' do
   redirect to ("/user")
 end
 
-get '/logout' do
-  session.clear
-  redirect to ("/")
-end
-
-get '/compose' do
-  erb :'compose'
-end
-
 post '/newtweet' do
   if session[:logged_in]
     @client = get_client
     @client.update(params[:compose_tweet])
     redirect to ('/user')
   end
+end
+
+get '/logout' do
+  session.clear
+  redirect to ("/")
 end

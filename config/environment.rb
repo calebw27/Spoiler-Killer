@@ -7,11 +7,8 @@ require 'active_support/all'
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/contrib/all' # Requires cookies, among other things
-require 'omniauth'
 require 'omniauth-twitter'
 require 'twitter'
-require 'open-uri'
-require 'json'
 require 'pry'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
